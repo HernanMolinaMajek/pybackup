@@ -1,42 +1,60 @@
-[
-    {
-        "_id": 1,
-        "_ownerId": 3,
-        "name": "Paco",
-        "_type": 1,
-        "breed": "Ovejero aleman",
-        "description": "Grande, Negro",
-        "isLost": false,
-        "LostIfo": null
-    },
-    {
-        "_id": 2,
-        "_ownerId": 2,
-        "name": "Betun",
-        "_type": 2,
-        "breed": "Egipcio",
-        "description": "Cabezon y feo",
-        "isLost": false,
-        "LostIfo": null
-    },
-    {
-        "_id": 3,
-        "_ownerId": 1,
-        "name": "Simurdiera",
-        "_type": 1,
-        "breed": "Caschi",
-        "description": "Grande, Marron",
-        "isLost": true,
-        "LostIfo": 1
-    },
-    {
-        "_id": 4,
-        "_ownerId": 2,
-        "name": "Patricio",
-        "_type": 4,
-        "breed": "Estrella de mar",
-        "description": "Rosa",
-        "isLost": true,
-        "LostIfo": 2
-    }
-]
+{
+  "_id": 0,
+  "ownerId": 2,
+  "img": "http://lorempixel.com/1024/720/cats/",
+  "name": "Katharine",
+  "sex": "female",
+  "age": 12,
+  "type": "Gato",
+  "breed": "Proident",
+  "description": "Dolor pariatur exercitation aute voluptate",
+  "isLost": true
+},
+{
+  "_id": 1,
+  "ownerId": 2,
+  "img": "http://lorempixel.com/1024/720/cats/",
+  "name": "Janette",
+  "sex": "female",
+  "age": 20,
+  "type": "Gato",
+  "breed": "Magna",
+  "description": "Irure minim quis exercitation dolore quis occaecat tempor sunt cupidatat. Sit Lorem proident qui cupidatat. Sunt tempor velit",
+  "isLost": true
+},
+{
+  "_id": 2,
+  "ownerId": 1,
+  "img": "http://lorempixel.com/1024/720/cats/",
+  "name": "Cornelia",
+  "sex": "female",
+  "age": 15,
+  "type": "Otro",
+  "breed": "Adproident",
+  "description": "Ipsum labore ullamco magna sit excepteur sunt cupidatat in proident",
+  "isLost": true
+},
+{
+  "_id": 3,
+  "ownerId": 0,
+  "img": "http://lorempixel.com/1024/720/cats/",
+  "name": "Socorro",
+  "sex": "female",
+  "age": 20,
+  "type": "Otro",
+  "breed": "Voluptate ",
+  "description": "Veniam incididunt officia adipisicing reprehenderit anim reprehenderit proident nostrud nostrud pariatur eiusmod nulla. Nostrud aliqua ea in elit qui dolor ex",
+  "isLost": false
+},
+{
+  "_id": 4,
+  "ownerId": 0,
+  "img": "http://lorempixel.com/1024/720/cats/",
+  "name": "Alfreda",
+  "sex": "female",
+  "age": 16,
+  "type": "Perro",
+  "breed": "Occaecat",
+  "description": "Culpa consectetur exercitation tempor magna aute occaecat. Consectetur laboris ad",
+  "isLost": true
+}
