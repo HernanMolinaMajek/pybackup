@@ -1,60 +1,62 @@
-{
-  "_id": 0,
-  "ownerId": 2,
-  "img": "http://lorempixel.com/1024/720/cats/",
-  "name": "Katharine",
-  "sex": "female",
-  "age": 12,
-  "type": "Gato",
-  "breed": "Proident",
-  "description": "Dolor pariatur exercitation aute voluptate",
-  "isLost": true
-},
-{
-  "_id": 1,
-  "ownerId": 2,
-  "img": "http://lorempixel.com/1024/720/cats/",
-  "name": "Janette",
-  "sex": "female",
-  "age": 20,
-  "type": "Gato",
-  "breed": "Magna",
-  "description": "Irure minim quis exercitation dolore quis occaecat tempor sunt cupidatat. Sit Lorem proident qui cupidatat. Sunt tempor velit",
-  "isLost": true
-},
-{
-  "_id": 2,
-  "ownerId": 1,
-  "img": "http://lorempixel.com/1024/720/cats/",
-  "name": "Cornelia",
-  "sex": "female",
-  "age": 15,
-  "type": "Otro",
-  "breed": "Adproident",
-  "description": "Ipsum labore ullamco magna sit excepteur sunt cupidatat in proident",
-  "isLost": true
-},
-{
-  "_id": 3,
-  "ownerId": 0,
-  "img": "http://lorempixel.com/1024/720/cats/",
-  "name": "Socorro",
-  "sex": "female",
-  "age": 20,
-  "type": "Otro",
-  "breed": "Voluptate ",
-  "description": "Veniam incididunt officia adipisicing reprehenderit anim reprehenderit proident nostrud nostrud pariatur eiusmod nulla. Nostrud aliqua ea in elit qui dolor ex",
-  "isLost": false
-},
-{
-  "_id": 4,
-  "ownerId": 0,
-  "img": "http://lorempixel.com/1024/720/cats/",
-  "name": "Alfreda",
-  "sex": "female",
-  "age": 16,
-  "type": "Perro",
-  "breed": "Occaecat",
-  "description": "Culpa consectetur exercitation tempor magna aute occaecat. Consectetur laboris ad",
-  "isLost": true
-}
+[
+  {
+    "_id": 0,
+    "ownerId": 2,
+    "img": "http://placeimg.com/720/820/animals",
+    "name": "Katharine",
+    "sex": "female",
+    "age": 12,
+    "type": "Gato",
+    "breed": "Proident",
+    "description": "Dolor pariatur exercitation aute voluptate",
+    "isLost": true
+  },
+  {
+    "_id": 1,
+    "ownerId": 2,
+    "img": "http://placeimg.com/720/850/animals",
+    "name": "Janette",
+    "sex": "female",
+    "age": 20,
+    "type": "Gato",
+    "breed": "Magna",
+    "description": "Irure minim quis exercitation dolore quis occaecat tempor sunt cupidatat. Sit Lorem proident qui cupidatat. Sunt tempor velit",
+    "isLost": true
+  },
+  {
+    "_id": 2,
+    "ownerId": 1,
+    "img": "http://placeimg.com/720/810/animals",
+    "name": "Cornelia",
+    "sex": "female",
+    "age": 15,
+    "type": "Otro",
+    "breed": "Adproident",
+    "description": "Ipsum labore ullamco magna sit excepteur sunt cupidatat in proident",
+    "isLost": true
+  },
+  {
+    "_id": 3,
+    "ownerId": 0,
+    "img": "http://placeimg.com/800/620/animals",
+    "name": "Socorro",
+    "sex": "female",
+    "age": 20,
+    "type": "Otro",
+    "breed": "Voluptate ",
+    "description": "Veniam incididunt officia adipisicing reprehenderit anim reprehenderit proident nostrud nostrud pariatur eiusmod nulla. Nostrud aliqua ea in elit qui dolor ex",
+    "isLost": true
+  },
+  {
+    "_id": 4,
+    "ownerId": 0,
+    "img": "http://placeimg.com/720/900/animals",
+    "name": "Alfreda",
+    "sex": "female",
+    "age": 16,
+    "type": "Perro",
+    "breed": "Occaecat",
+    "description": "Culpa consectetur exercitation tempor magna aute occaecat. Consectetur laboris ad",
+    "isLost": true
+  }
+]

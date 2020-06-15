@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import fakeOwners from "./fakeOwners.json";
 import PetAdmin from "./views/PetsAdmin/Index";
-import NavBar from "./components/NavBar"
-import Home from "./views/Home/Index"
-import List from "./views/MissingPetsList/Index"
- 
-const App = () => {
-  const [user, setUser] = useState(null);
+import NavBar from "./components/NavBar";
+import Home from "./views/Home/Index";
+import List from "./views/MissingPetsList/Index";
 
+const App = () => {
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     setOwnerInfo(2);
@@ -21,14 +20,14 @@ const App = () => {
     setUser(getLoggedUser(userId));
   };
 
-  return <div>
+  return (
+    <div className="bg-white">
+      <NavBar user={user} />
+
+      <List />
     
-    <NavBar user={user}/>
-    
-    <List/>
- 
-  </div>
-    
+    </div>
+  );
 };
 
 export default App;

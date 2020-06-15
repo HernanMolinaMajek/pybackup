@@ -1,61 +1,48 @@
 import React, { useEffect, useState } from "react";
 
-const NavBar = ({user}) => {
+const NavBar = ({ user }) => {
+  const {name} = user
   const [isMenuActive, setIsMenuActive] = useState(false);
-  const [isUserLogged, setIsUserLogged] = useState(null);
-
-  
-
-
+  const [isUserLogged, setIsUserLogged] = useState(false);
 
   const toogleMenu = () => {
     setIsMenuActive(!isMenuActive);
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <svg
-          className="fill-current h-8 w-8 mr-2"
-          width="54"
-          height="54"
-          viewBox="0 0 54 54"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
-        </svg>
-        <span className="font-semibold text-xl tracking-tight">
-          Tailwind CSS
-        </span>
-      </div>
-      <div className="block lg:hidden">
-        <button
-          onClick={toogleMenu}
-          className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
-        >
-          <svg
-            className="fill-current h-3 w-3"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+    <nav className="flex flex-col items-start bg-white mb-3 p-5 lg:flex-row ">
+      
+      <div className="flex flex-row w-full items-center justify-between ">
+        
+        <div onClick={toogleMenu} className="text-gray-600 lg:hidden">
+          <svg fill="#969696" viewBox="0 0 100 80" width="25" height="25">
+            <rect x="25" width="50" height="10" rx="8"></rect>
+            <rect y="30" width="100" height="10" rx="8"></rect>
+            <rect x="25" y="60" width="50" height="10" rx="8"></rect>
           </svg>
-        </button>
+        </div>
+
+        <div className="flex flex-row">
+          <h1>Perdidos ya</h1>
+        </div>
+      
+        <div className="">
+        </div>
       </div>
-      <div className={`w-full block flex-grow ${isMenuActive ? "" : "hidden"} lg:flex lg:items-center lg:w-auto`}>
-        <div className="text-sm lg:flex-grow">
+      
+      <div className={`${isMenuActive ? "" : "hidden"} lg:flex lg:items-center`}>
+        <div className="text-sm">
           {isUserLogged ? (
             <div>
               <a
                 href="adminstacion del usuario"
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white "
               >
-                Usename
+                {name}
               </a>
               <a
                 href="#responsive-header"
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
               >
                 Mis mascotas
               </a>
@@ -69,22 +56,21 @@ const NavBar = ({user}) => {
             </div>
           ) : (
             <div>
-            <a
-              href="formulario de inicio de sesion"
-              className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-            >
-              Iniciar sesion
-            </a>
-            <a
-              href="formulario de inicio de sesion"
-              className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-            >
-              Registrarse
-            </a>
+              <a
+                href="formulario de inicio de sesion"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              >
+                Iniciar sesion
+              </a>
+              <a
+                href="formulario de inicio de sesion"
+                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              >
+                Registrarse
+              </a>
             </div>
           )}
         </div>
-        
       </div>
     </nav>
   );
