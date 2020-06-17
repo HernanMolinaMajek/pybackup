@@ -14,6 +14,7 @@ const PetCard = ({ info }) => {
     breed,
     type,
     name,
+    distance
   } = info;
 
   const cardStyle = {
@@ -62,8 +63,9 @@ const PetCard = ({ info }) => {
           className="flex flex-col justify-around shadow-md p-5 bg-white w-full h-40"
         >
           <h1 className="text-lg">{name}</h1>
+          <p>{distance} metros</p>
           <p>{breed}</p>
-          <p>{age} años de edad</p>
+          <p>{age} años</p>
           <p>{howManydaysPassed(date)}</p>
         </div>
       </div>

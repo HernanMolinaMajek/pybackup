@@ -4,7 +4,6 @@ import PrivateRoute from "./components/PrivateRouting";
 
 import fakeOwners from "./fakeOwners.json";
 
-
 import NavBar from "./components/NavBar";
 import Home from "./views/Home/Index";
 import List from "./views/MissingPetsList/Index";
@@ -13,23 +12,24 @@ import LogIn from "./views/LogIn/Index";
 import UserAdmin from "./views/userAdmin/Index";
 import PetAdmin from "./views/PetsAdmin/Index";
 
-
 const App = () => {
   const [user, setUser] = useState({});
-  const [isAuthenticated , setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userLocation, setUserLocation] = useState({});
 
   useEffect(() => {
-    logIn(2)
+    logIn(0);
+    setUserLocation({lat: -26.8283728, lng: -65.2224645})
   }, []);
 
   const logOut = () => {
     setIsAuthenticated(false);
-    setUser({})
-  }
+    setUser({});
+  };
   const logIn = (userId) => {
     setIsAuthenticated(true);
     setOwnerInfo(userId);
-  }
+  };
 
   const getLoggedUser = (userId) => {
     return fakeOwners.find((owner) => owner._id === userId);
@@ -42,7 +42,11 @@ const App = () => {
   return (
     <div className="bg-white">
       <Router>
-        <NavBar userName={user.name} authenticated={isAuthenticated} logOut={logOut} />
+        <NavBar
+          userName={user.name}
+          authenticated={isAuthenticated}
+          logOut={logOut}
+        />
 
         <Switch>
           <Route exact path="/">
@@ -58,15 +62,15 @@ const App = () => {
           </Route>
 
           <PrivateRoute authenticated={isAuthenticated} path="/userAdmin">
-            <UserAdmin user={user}/>
+            <UserAdmin user={user} />
           </PrivateRoute>
 
           <PrivateRoute authenticated={isAuthenticated} path="/petAdmin">
-            <PetAdmin user={user}/>
+            <PetAdmin user={user} />
           </PrivateRoute>
 
           <Route path="/missingPets">
-            <List />
+            <List userLocation={userLocation}/>
           </Route>
         </Switch>
       </Router>
