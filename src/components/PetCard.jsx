@@ -39,7 +39,6 @@ const PetCard = ({ info }) => {
   return (
     <div className={`${isLostStyle.bgClass} m-5`}>
       <h1>{name}</h1>
-      <p>{getType()}</p>
       <p>{breed}</p>
       <p>{description}</p>
       <div className="flex">
