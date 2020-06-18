@@ -1,26 +1,40 @@
 import React, { useState, useEffect } from "react";
-import PetCard from "./PetCard";
+import { getDistance, orderByDistance } from "geolib";
 
 import LossesPets from "../../fakeLosses.json";
 import Pets from "../../fakePets.json";
 
+import PetCard from "./PetCard";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
-const Index = () => {
+
+const Index = ({ userLocation }) => {
   const [missingPets, setMissingPets] = useState([]);
-  
 
   useEffect(() => {
     setPets();
   }, []);
+
+  // const orderListOfPets = () => {
+  //   let orderedList = missingPets.sort((a, b) => a.distance > b.distance ? 1 : -1);
+
+  //   setMissingPets(orderedList);
+  // };
+
+  // const algo = () => {
+
+  //   setPets()
+
+  //   orderListOfPets()
+  // };
 
   const setPets = () => {
     let ListOfLossesPetsId2 = LossesPets.map((lp) => {
       return { _petId: lp._petId, date: lp.date, location: lp.location };
     });
 
-    let LstOfLossesPetsData2 = ListOfLossesPetsId2.map((pet) => {
+    let ListOfLossesPetsData2 = ListOfLossesPetsId2.map((pet) => {
       let aux = Pets.find((p) => p._id === pet._petId);
       if (aux) {
         pet["_id"] = aux._id;
@@ -31,6 +45,7 @@ const Index = () => {
         pet["type"] = aux.type;
         pet["breed"] = aux.breed;
         pet["description"] = aux.description;
+        pet["distance"] = getDistance(userLocation, pet.location);
       }
       return pet;
     });
@@ -38,10 +53,14 @@ const Index = () => {
     // let LstOfLossesPetsData = Pets.filter((pet) =>
     //   ListOfLossesPetsId.includes(pet._id)
     // );
-    setMissingPets(LstOfLossesPetsData2);
+    let orderedList = ListOfLossesPetsData2.sort((a, b) =>
+      a.distance > b.distance ? 1 : -1
+    );
+
+    
+    setMissingPets(orderedList);
   };
 
-  
   return (
     <div
       style={{
@@ -54,7 +73,7 @@ const Index = () => {
       <div className="w-full">
         <div className="relative">
           <select
-            style={{borderRadius:"1rem"}}
+            style={{ borderRadius: "1rem" }}
             className="block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-state"
           >
@@ -63,7 +82,7 @@ const Index = () => {
             <option>Gato</option>
             <option>Otros</option>
           </select>
-          
+
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
             <svg
               className="fill-current h-4 w-4"
@@ -76,10 +95,9 @@ const Index = () => {
         </div>
       </div>
 
-      
       {missingPets.map((pet) => (
         <PetCard key={pet._id} info={pet} />
-       ))}
+      ))}
     </div>
   );
 };
