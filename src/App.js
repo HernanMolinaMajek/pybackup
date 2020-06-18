@@ -13,6 +13,15 @@ import LogIn from "./views/LogIn/Index";
 import UserAdmin from "./views/userAdmin/Index";
 import PetAdmin from "./views/PetsAdmin/Index";
 
+import Map from "./components/Map"
+
+
+const sightings = [
+  {
+    lat: -26.8241405,
+    lng: -65.2226028
+  },
+];
 
 const App = () => {
   const [user, setUser] = useState({});
