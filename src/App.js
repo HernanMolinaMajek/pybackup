@@ -7,10 +7,13 @@ import fakeOwners from "./fakeOwners.json";
 import NavBar from "./components/NavBar";
 import Home from "./views/Home/Index";
 import List from "./views/MissingPetsList/Index";
-import Register from "./views/Register/Index";
+import Register from "./views/RegisterForm/Index";
 import LogIn from "./views/LogIn/Index";
 import UserAdmin from "./views/userAdmin/Index";
 import PetAdmin from "./views/PetsAdmin/Index";
+
+import Map from "./components/Map";
+import LostPetForm from "./views/LostPetForm/Index";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -19,7 +22,7 @@ const App = () => {
 
   useEffect(() => {
     logIn(0);
-    setUserLocation({lat: -26.8283728, lng: -65.2224645})
+    setUserLocation({ lat: -26.8283728, lng: -65.2224645 });
   }, []);
 
   const logOut = () => {
@@ -53,6 +56,10 @@ const App = () => {
             <Home />
           </Route>
 
+          <Route exact path="/a">
+            <LostPetForm />
+          </Route>
+
           <Route exact path="/register">
             <Register />
           </Route>
@@ -61,6 +68,8 @@ const App = () => {
             <LogIn />
           </Route>
 
+
+
           <PrivateRoute authenticated={isAuthenticated} path="/userAdmin">
             <UserAdmin user={user} />
           </PrivateRoute>
@@ -68,9 +77,14 @@ const App = () => {
           <PrivateRoute authenticated={isAuthenticated} path="/petAdmin">
             <PetAdmin user={user} />
           </PrivateRoute>
+          
+          <PrivateRoute authenticated={isAuthenticated} path="/lostPetForm">
+            <LostPetForm />
+          </PrivateRoute>
+
 
           <Route path="/missingPets">
-            <List userLocation={userLocation}/>
+            <List userLocation={userLocation} />
           </Route>
         </Switch>
       </Router>

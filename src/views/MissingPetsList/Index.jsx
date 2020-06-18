@@ -3,11 +3,9 @@ import { getDistance, orderByDistance } from "geolib";
 
 import LossesPets from "../../fakeLosses.json";
 import Pets from "../../fakePets.json";
+import Owners from "../../fakeOwners.json";
 
 import PetCard from "./PetCard";
-import Modal from "react-modal";
-
-Modal.setAppElement("#root");
 
 const Index = ({ userLocation }) => {
   const [missingPets, setMissingPets] = useState([]);
@@ -30,22 +28,27 @@ const Index = ({ userLocation }) => {
   // };
 
   const setPets = () => {
-    let ListOfLossesPetsId2 = LossesPets.map((lp) => {
-      return { _petId: lp._petId, date: lp.date, location: lp.location };
-    });
+    // let ListOfLossesPetsId2 = LossesPets.map((lp) => {
+    //   return { _petId: lp._petId, date: lp.date, location: lp.location };
+    // });
 
-    let ListOfLossesPetsData2 = ListOfLossesPetsId2.map((pet) => {
-      let aux = Pets.find((p) => p._id === pet._petId);
-      if (aux) {
-        pet["_id"] = aux._id;
-        pet["name"] = aux.name;
-        pet["img"] = aux.img;
-        pet["sex"] = aux.sex;
-        pet["age"] = aux.age;
-        pet["type"] = aux.type;
-        pet["breed"] = aux.breed;
-        pet["description"] = aux.description;
+    let ListOfLossesPetsData2 = LossesPets.map((pet) => {
+      let petInfo = Pets.find((p) => p._id === pet._petId);
+      let ownerInfo = Owners.find((o) => o._id === pet._ownerId);
+
+      if (petInfo && ownerInfo) {
+        pet["_id"] = petInfo._id;
+        pet["name"] = petInfo.name;
+        pet["img"] = petInfo.img;
+        pet["sex"] = petInfo.sex;
+        pet["age"] = petInfo.age;
+        pet["type"] = petInfo.type;
+        pet["breed"] = petInfo.breed;
+        pet["description"] = petInfo.description;
         pet["distance"] = getDistance(userLocation, pet.location);
+        pet["ownerName"] = ownerInfo.name;
+        pet["phone"] = ownerInfo.phone;
+        pet["email"] = ownerInfo.email;
       }
       return pet;
     });
@@ -57,7 +60,6 @@ const Index = ({ userLocation }) => {
       a.distance > b.distance ? 1 : -1
     );
 
-    
     setMissingPets(orderedList);
   };
 
