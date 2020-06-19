@@ -77,6 +77,10 @@ const PetCard = ({ info }) => {
     },
   };
 
+  const convertToKm = (m) => {
+    return (m/1000).toFixed(2);
+  }
+
   const howManydaysPassed = (date) => {
     return moment(date, "YYYYMMDD").fromNow();
   };
@@ -110,7 +114,7 @@ const PetCard = ({ info }) => {
           className="flex flex-col justify-around shadow-md p-5 bg-white w-full h-40"
         >
           <h1 className="text-lg">{name}</h1>
-          <p>{distance} metros</p>
+          <p>{convertToKm(distance)} kilometros</p>
           <p>{breed}</p>
           <p>{age} años</p>
           <p>{howManydaysPassed(date)}</p>
@@ -145,7 +149,7 @@ const PetCard = ({ info }) => {
                   <p className="text-sm text-gray-600">{breed}</p>
                   <p className="text-sm text-gray-600">{age} años de edad</p>
                 </div>
-                <p className="text-base text-gray-600">a {distance} metros</p>
+                <p className="text-base text-gray-600">a {convertToKm(distance)} kilometros</p>
               </div>
             </div>
             <div className="px-4 py-3 mt-12 text-gray-700">

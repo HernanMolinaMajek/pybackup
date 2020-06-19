@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getDistance, orderByDistance } from "geolib";
+import { getDistance } from "geolib";
 
 import LossesPets from "../../fakeLosses.json";
 import Pets from "../../fakePets.json";
 import Owners from "../../fakeOwners.json";
-
 import PetCard from "./PetCard";
 
 const Index = ({ userLocation }) => {
@@ -14,6 +13,12 @@ const Index = ({ userLocation }) => {
     setPets();
   }, []);
 
+
+  const transformer = (num) =>{
+    num = num/100
+
+
+  }
   // const orderListOfPets = () => {
   //   let orderedList = missingPets.sort((a, b) => a.distance > b.distance ? 1 : -1);
 
@@ -46,10 +51,13 @@ const Index = ({ userLocation }) => {
         pet["breed"] = petInfo.breed;
         pet["description"] = petInfo.description;
         pet["distance"] = getDistance(userLocation, pet.location);
+        
+        
         pet["ownerName"] = ownerInfo.name;
         pet["phone"] = ownerInfo.phone;
         pet["email"] = ownerInfo.email;
       }
+      console.log(pet)
       return pet;
     });
     // let ListOfLossesPetsId = LossesPets.map((lp) => lp._petId);

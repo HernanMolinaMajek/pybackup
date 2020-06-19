@@ -22,8 +22,12 @@ const App = () => {
 
   useEffect(() => {
     logIn(0);
-    setUserLocation({ lat: -26.8283728, lng: -65.2224645 });
+    //setUserLocation({ lat: -26.8283728, lng: -65.2224645 });
   }, []);
+
+  const setUserLocationInMap = (position) => {
+    setUserLocation(position);
+  };
 
   const logOut = () => {
     setIsAuthenticated(false);
@@ -53,7 +57,7 @@ const App = () => {
 
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home setUserLocationInMap={setUserLocationInMap} />
           </Route>
 
           <Route exact path="/a">
@@ -68,8 +72,6 @@ const App = () => {
             <LogIn />
           </Route>
 
-
-
           <PrivateRoute authenticated={isAuthenticated} path="/userAdmin">
             <UserAdmin user={user} />
           </PrivateRoute>
@@ -77,11 +79,10 @@ const App = () => {
           <PrivateRoute authenticated={isAuthenticated} path="/petAdmin">
             <PetAdmin user={user} />
           </PrivateRoute>
-          
+
           <PrivateRoute authenticated={isAuthenticated} path="/lostPetForm">
             <LostPetForm />
           </PrivateRoute>
-
 
           <Route path="/missingPets">
             <List userLocation={userLocation} />
