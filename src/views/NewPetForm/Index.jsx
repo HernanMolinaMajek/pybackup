@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const Index = () => {
+const Index = (props) => {
+  const { info } = props.match.state;
+  console.log(info);
+
+
   const buttonStyle = {
     backgroundColor: "#306060",
     borderRadius: "1rem",
@@ -22,7 +26,7 @@ const Index = () => {
         method: "post",
         cors: "no-cors",
         headers: {
-          "accept": "application/json",
+          accept: "application/json",
           "content-type": "application/json",
         },
         body: JSON.stringify({
@@ -37,15 +41,13 @@ const Index = () => {
           isLost: true,
         }),
       });
-      console.log(resutl)
+      console.log(resutl);
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <div className="flex justify-center items-center h-full p-8 ">
-      <button onClick={postData}>presiona</button>
-
       <form
         action=""
         style={formStyle}

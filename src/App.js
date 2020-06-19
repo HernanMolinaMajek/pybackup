@@ -11,8 +11,7 @@ import Register from "./views/RegisterForm/Index";
 import LogIn from "./views/LogIn/Index";
 import UserAdmin from "./views/userAdmin/Index";
 import PetAdmin from "./views/PetsAdmin/Index";
-
-import Map from "./components/Map";
+import New from "./views/NewPetForm/Index"
 import LostPetForm from "./views/LostPetForm/Index";
 
 const App = () => {
@@ -57,12 +56,13 @@ const App = () => {
 
         <Switch>
           <Route exact path="/">
-            <Home setUserLocationInMap={setUserLocationInMap} />
+            {/* <Home setUserLocationInMap={setUserLocationInMap} /> */}
+            <New />
           </Route>
-
+{/* 
           <Route exact path="/a">
             <LostPetForm />
-          </Route>
+          </Route> */}
 
           <Route exact path="/register">
             <Register />
@@ -83,6 +83,13 @@ const App = () => {
           <PrivateRoute authenticated={isAuthenticated} path="/lostPetForm">
             <LostPetForm />
           </PrivateRoute>
+
+
+          <PrivateRoute authenticated={isAuthenticated} path="/newPetForm">
+            <New user={user}  />
+          </PrivateRoute>
+
+
 
           <Route path="/missingPets">
             <List userLocation={userLocation} />
