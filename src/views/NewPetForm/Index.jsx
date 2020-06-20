@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-const Index = (props) => {
-  const { info } = props.match.state;
-  console.log(info);
-
+const Index = () => {
+  
 
   const buttonStyle = {
     backgroundColor: "#306060",
@@ -47,7 +45,7 @@ const Index = (props) => {
     }
   };
   return (
-    <div className="flex justify-center items-center h-full p-8 ">
+    <div className="flex justify-center items-center w-full h-full">
       <form
         action=""
         style={formStyle}
@@ -112,7 +110,7 @@ const Index = (props) => {
             </label>
             <input
               style={inputStyle}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none  block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-last-name"
               type="text"
             ></input>
@@ -175,6 +173,21 @@ const Index = (props) => {
               type="text"
             ></input>
           </div>
+
+          <div className="w-full md:w-1/2 mb-6 px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              for="grid-last-name"
+            >
+              Descripción general
+            </label>
+            <input
+              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              type="file"
+              accept="image/*"
+            ></input>
+          </div>
+
         </div>
 
         <div className="flex justify-center lg:justify-end">

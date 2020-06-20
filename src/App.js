@@ -32,7 +32,7 @@ const App = () => {
     setIsAuthenticated(false);
     setUser({});
   };
-  const logIn = (userId) => {
+  const logIn = (userId) => { 
     setIsAuthenticated(true);
     setOwnerInfo(userId);
   };
@@ -56,13 +56,13 @@ const App = () => {
 
         <Switch>
           <Route exact path="/">
-            {/* <Home setUserLocationInMap={setUserLocationInMap} /> */}
-            <New />
+            <Home setUserLocationInMap={setUserLocationInMap} />
+            
           </Route>
-{/* 
+
           <Route exact path="/a">
             <LostPetForm />
-          </Route> */}
+          </Route>
 
           <Route exact path="/register">
             <Register />
