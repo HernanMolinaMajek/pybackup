@@ -6,12 +6,12 @@ import fakeOwners from "./fakeOwners.json";
 
 import NavBar from "./components/NavBar";
 import Home from "./views/Home/Index";
-import List from "./views/MissingPetsList/Index";
+import MissingPets from "./views/MissingPetsList/Index";
 import Register from "./views/RegisterForm/Index";
 import LogIn from "./views/LogIn/Index";
 import UserAdmin from "./views/userAdmin/Index";
 import PetAdmin from "./views/PetsAdmin/Index";
-import New from "./views/NewPetForm/Index"
+import NewPetForm from "./views/NewPetForm/Index";
 import LostPetForm from "./views/LostPetForm/Index";
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
   const [userLocation, setUserLocation] = useState({});
 
   useEffect(() => {
-    logIn(0);
+    logIn("5eec80512b936e1d570669dd");
     //setUserLocation({ lat: -26.8283728, lng: -65.2224645 });
   }, []);
 
@@ -32,7 +32,7 @@ const App = () => {
     setIsAuthenticated(false);
     setUser({});
   };
-  const logIn = (userId) => { 
+  const logIn = (userId) => {
     setIsAuthenticated(true);
     setOwnerInfo(userId);
   };
@@ -48,6 +48,49 @@ const App = () => {
   return (
     <div className="bg-white">
       <Router>
+        <NavBar
+          userName={user.name}
+          authenticated={isAuthenticated}
+          logOut={logOut}
+        />
+
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <Home {...props} setUserLocationInMap={setUserLocationInMap} />
+            )}
+          />
+
+          <Route
+            path="/petAdmin"
+            render={(props) => <PetAdmin {...props} user={user} />}
+          />
+
+          <Route path="/lostPetForm/:id" component={LostPetForm} />
+
+          <Route
+            exact
+            path="/newPetForm"
+            render={(props) => <NewPetForm {...props} user={user} />}
+          />
+
+          <Route
+            path="/newPetForm/:id"
+            render={(props) => <NewPetForm {...props} user={user} />}
+          />
+
+          <Route
+            path="/missingPets"
+            render={(props) => (
+              <MissingPets {...props} userLocation={userLocation} />
+            )}
+          />
+        </Switch>
+      </Router>
+
+      {/* <Router>
         <NavBar
           userName={user.name}
           authenticated={isAuthenticated}
@@ -89,13 +132,11 @@ const App = () => {
             <New user={user}  />
           </PrivateRoute>
 
-
-
           <Route path="/missingPets">
             <List userLocation={userLocation} />
           </Route>
         </Switch>
-      </Router>
+      </Router> */}
     </div>
   );
 };

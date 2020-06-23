@@ -10,15 +10,30 @@ const Index = ({ userLocation }) => {
   const [missingPets, setMissingPets] = useState([]);
 
   useEffect(() => {
-    setPets();
+    //setPets();
+    getMissingPets().then((pets) => {
+      let pe = pets.map((mp) => {
+        let parsedPosition = {
+          lat: parseFloat(mp.location.lat),
+          lng: parseFloat(mp.location.lng),
+        };
+        mp["distance"] = getDistance(userLocation, parsedPosition);
+        return mp;
+      });
+
+      let orderedList = pe.sort((a, b) => (a.distance > b.distance ? 1 : -1));
+
+      setMissingPets(orderedList);
+    });
   }, []);
 
+  const getMissingPets = async () => {
+    const response = await fetch("http://localhost:3030/api/lost");
+    const data = await response.json();
+    //console.log(data.Lost);
+    return data.Lost;
+  };
 
-  const transformer = (num) =>{
-    num = num/100
-
-
-  }
   // const orderListOfPets = () => {
   //   let orderedList = missingPets.sort((a, b) => a.distance > b.distance ? 1 : -1);
 
@@ -32,44 +47,43 @@ const Index = ({ userLocation }) => {
   //   orderListOfPets()
   // };
 
-  const setPets = () => {
-    // let ListOfLossesPetsId2 = LossesPets.map((lp) => {
-    //   return { _petId: lp._petId, date: lp.date, location: lp.location };
-    // });
+  // const setPets = () => {
+  //   // let ListOfLossesPetsId2 = LossesPets.map((lp) => {
+  //   //   return { _petId: lp._petId, date: lp.date, location: lp.location };
+  //   // });
 
-    let ListOfLossesPetsData2 = LossesPets.map((pet) => {
-      let petInfo = Pets.find((p) => p._id === pet._petId);
-      let ownerInfo = Owners.find((o) => o._id === pet._ownerId);
+  //   let ListOfLossesPetsData2 = LossesPets.map((pet) => {
+  //     let petInfo = Pets.find((p) => p._id === pet._petId);
+  //     let ownerInfo = Owners.find((o) => o._id === pet._ownerId);
 
-      if (petInfo && ownerInfo) {
-        pet["_id"] = petInfo._id;
-        pet["name"] = petInfo.name;
-        pet["img"] = petInfo.img;
-        pet["sex"] = petInfo.sex;
-        pet["age"] = petInfo.age;
-        pet["type"] = petInfo.type;
-        pet["breed"] = petInfo.breed;
-        pet["description"] = petInfo.description;
-        pet["distance"] = getDistance(userLocation, pet.location);
-        
-        
-        pet["ownerName"] = ownerInfo.name;
-        pet["phone"] = ownerInfo.phone;
-        pet["email"] = ownerInfo.email;
-      }
-      console.log(pet)
-      return pet;
-    });
-    // let ListOfLossesPetsId = LossesPets.map((lp) => lp._petId);
-    // let LstOfLossesPetsData = Pets.filter((pet) =>
-    //   ListOfLossesPetsId.includes(pet._id)
-    // );
-    let orderedList = ListOfLossesPetsData2.sort((a, b) =>
-      a.distance > b.distance ? 1 : -1
-    );
+  //     if (petInfo && ownerInfo) {
+  //       pet["_id"] = petInfo._id;
+  //       pet["name"] = petInfo.name;
+  //       pet["img"] = petInfo.img;
+  //       pet["sex"] = petInfo.sex;
+  //       pet["age"] = petInfo.age;
+  //       pet["type"] = petInfo.type;
+  //       pet["breed"] = petInfo.breed;
+  //       pet["description"] = petInfo.description;
+  //       pet["distance"] = getDistance(userLocation, pet.location);
 
-    setMissingPets(orderedList);
-  };
+  //       pet["ownerName"] = ownerInfo.name;
+  //       pet["phone"] = ownerInfo.phone;
+  //       pet["email"] = ownerInfo.email;
+  //     }
+
+  //     return pet;
+  //   });
+  //   // let ListOfLossesPetsId = LossesPets.map((lp) => lp._petId);
+  //   // let LstOfLossesPetsData = Pets.filter((pet) =>
+  //   //   ListOfLossesPetsId.includes(pet._id)
+  //   // );
+  //   let orderedList = ListOfLossesPetsData2.sort((a, b) =>
+  //     a.distance > b.distance ? 1 : -1
+  //   );
+
+  //   setMissingPets(orderedList);
+  // };
 
   return (
     <div

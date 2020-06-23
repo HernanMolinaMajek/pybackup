@@ -9,24 +9,14 @@ const PetCard = ({ info }) => {
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const [petSigth, setPetSigth] = useState({});
 
-  const {
-    img,
-    sex,
-    date,
-    description,
-    ownerName,
-    age,
-    location,
-    phone,
-    breed,
-    type,
-    name,
-    distance,
-  } = info;
+  console.log(info)
+  const { distance ,date} = info;
+  const { name:ownerName, phone } = info._ownerId;
+  const { age, breed, description, img, name, sex, type } = info._petId;
 
-  const setMapPosition = (position) =>{
-    setPetSigth(position)
-  } 
+  const setMapPosition = (position) => {
+    setPetSigth(position);
+  };
 
   const cardStyle = {
     borderTopRightRadius: "1rem",
@@ -78,8 +68,8 @@ const PetCard = ({ info }) => {
   };
 
   const convertToKm = (m) => {
-    return (m/1000).toFixed(2);
-  }
+    return (m / 1000).toFixed(2);
+  };
 
   const howManydaysPassed = (date) => {
     return moment(date, "YYYYMMDD").fromNow();
@@ -149,7 +139,9 @@ const PetCard = ({ info }) => {
                   <p className="text-sm text-gray-600">{breed}</p>
                   <p className="text-sm text-gray-600">{age} años de edad</p>
                 </div>
-                <p className="text-base text-gray-600">a {convertToKm(distance)} kilometros</p>
+                <p className="text-base text-gray-600">
+                  a {convertToKm(distance)} kilometros
+                </p>
               </div>
             </div>
             <div className="px-4 py-3 mt-12 text-gray-700">
