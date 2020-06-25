@@ -11,6 +11,7 @@ const Index = ({ match, user }) => {
     age: "",
     img: "",
   });
+
   const [form, setForm] = useState({
     _ownerId: user._name,
     name: "",

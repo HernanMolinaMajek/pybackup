@@ -15,8 +15,11 @@ const Index = ({ user }) => {
   }, []);
 
   const getUserPets = async () => {
-    const response = await fetch("http://localhost:3030/api/pet");
+    const response = await fetch(
+      `http://localhost:3030/api/pet/userpets/${_id}`
+    );
     const data = await response.json();
+
     return data;
   };
 
@@ -32,9 +35,11 @@ const Index = ({ user }) => {
   };
   return (
     <div className="flex flex-col">
-      {userPets.map((pet) => (
-        <PetCard key={pet._id} info={pet} />
-      ))}
+      {userPets.length > 0 ? (
+        userPets.map((pet) => <PetCard key={pet._id} info={pet} />)
+      ) : (
+        <h1>no hay</h1>
+      )}
 
       <Link to="/newPetForm" className="absolute bottom-0 sticky z-40 w-full">
         <button

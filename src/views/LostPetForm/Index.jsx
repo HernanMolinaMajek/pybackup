@@ -52,6 +52,7 @@ const Index = ({ match }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(form.date)
     if (formValid(form)) {
       submit();
       setRedirect(true);
@@ -262,7 +263,7 @@ const Index = ({ match }) => {
             className="w-40 absolute z-40 bottom-0 hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
             type="button"
           >
-            {form.position ? "Aceptar" : "Seleccione"}
+            {form.position ? "Aceptar" : "Cancelar"}
           </button>
         </div>
       </Modal>

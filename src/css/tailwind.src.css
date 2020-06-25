@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.w-70 {
+  width: 20rem;
+}
+.rounded-xl {
+  border-radius: 1rem;
+}

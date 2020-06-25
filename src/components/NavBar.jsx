@@ -70,7 +70,6 @@ const NavBar = ({ authenticated, userName, logOut }) => {
 
               <div
                 onClick={logOut}
-                href="#responsive-header"
                 className="block mt-4 lg:inline-block lg:mt-0  hover:text-white lg:mx-6 "
               >
                 Cerrar sesion
@@ -78,10 +77,17 @@ const NavBar = ({ authenticated, userName, logOut }) => {
             </div>
           ) : (
             <div>
-              <div
-                href="formulario de inicio de sesion"
-                className="block lg:inline-block lg:mt-0  hover:text-white lg:mx-6 "
-              >
+              <div className="block lg:inline-block lg:mt-0 hover:text-white lg:mx-6 lg:hidden ">
+                <Link
+                  onClick={() => {
+                    setIsMenuActive(false);
+                  }}
+                  to={"/"}
+                >
+                  Home
+                </Link>
+              </div>
+              <div className="block mt-4  lg:inline-block lg:mt-0  hover:text-white lg:mx-6 ">
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -91,10 +97,7 @@ const NavBar = ({ authenticated, userName, logOut }) => {
                   Registrase
                 </Link>
               </div>
-              <div
-                href="formulario de inicio de sesion"
-                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white lg:mx-6 "
-              >
+              <div className="block mt-4 lg:inline-block lg:mt-0 hover:text-white lg:mx-6 ">
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);

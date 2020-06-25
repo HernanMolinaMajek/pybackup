@@ -8,7 +8,7 @@ import NavBar from "./components/NavBar";
 import Home from "./views/Home/Index";
 import MissingPets from "./views/MissingPetsList/Index";
 import Register from "./views/RegisterForm/Index";
-import LogIn from "./views/LogIn/Index";
+import LoginForm from "./views/LogIn/Index";
 import UserAdmin from "./views/userAdmin/Index";
 import PetAdmin from "./views/PetsAdmin/Index";
 import NewPetForm from "./views/NewPetForm/Index";
@@ -19,10 +19,10 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userLocation, setUserLocation] = useState({});
 
-  useEffect(() => {
-    logIn("5eec80512b936e1d570669dd");
-    //setUserLocation({ lat: -26.8283728, lng: -65.2224645 });
-  }, []);
+  // useEffect(() => {
+  //   //logIn("5eec80512b936e1d570669dd");
+  //   //setUserLocation({ lat: -26.8283728, lng: -65.2224645 });
+  // }, []);
 
   const setUserLocationInMap = (position) => {
     setUserLocation(position);
@@ -32,18 +32,19 @@ const App = () => {
     setIsAuthenticated(false);
     setUser({});
   };
-  const logIn = (userId) => {
+
+  const logIn = (user) => {
     setIsAuthenticated(true);
-    setOwnerInfo(userId);
+    setUser(user);
   };
 
-  const getLoggedUser = (userId) => {
-    return fakeOwners.find((owner) => owner._id === userId);
-  };
+  // const getLoggedUser = (userId) => {
+  //   return fakeOwners.find((owner) => owner._id === userId);
+  // };
 
-  const setOwnerInfo = (userId) => {
-    setUser(getLoggedUser(userId));
-  };
+  // const setOwnerInfo = (userId) => {
+  //   setUser(getLoggedUser(userId));
+  // };
 
   return (
     <div className="bg-white">
@@ -54,40 +55,52 @@ const App = () => {
           logOut={logOut}
         />
 
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) => (
-              <Home {...props} setUserLocationInMap={setUserLocationInMap} />
-            )}
-          />
+        <div className="lg:px-32">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <Home {...props} setUserLocationInMap={setUserLocationInMap} />
+              )}
+            />
 
-          <Route
-            path="/petAdmin"
-            render={(props) => <PetAdmin {...props} user={user} />}
-          />
+            <Route
+              path="/login"
+              render={(props) => <LoginForm {...props} logIn={logIn} />}
+            />
 
-          <Route path="/lostPetForm/:id" component={LostPetForm} />
+            <Route
+              path="/register"
+              render={(props) => <Register {...props} logIn={logIn} />}
+            />
 
-          <Route
-            exact
-            path="/newPetForm"
-            render={(props) => <NewPetForm {...props} user={user} />}
-          />
+            <Route
+              path="/petAdmin"
+              render={(props) => <PetAdmin {...props} user={user} />}
+            />
 
-          <Route
-            path="/newPetForm/:id"
-            render={(props) => <NewPetForm {...props} user={user} />}
-          />
+            <Route path="/lostPetForm/:id" component={LostPetForm} />
 
-          <Route
-            path="/missingPets"
-            render={(props) => (
-              <MissingPets {...props} userLocation={userLocation} />
-            )}
-          />
-        </Switch>
+            <Route
+              exact
+              path="/newPetForm"
+              render={(props) => <NewPetForm {...props} user={user} />}
+            />
+
+            <Route
+              path="/newPetForm/:id"
+              render={(props) => <NewPetForm {...props} user={user} />}
+            />
+
+            <Route
+              path="/missingPets"
+              render={(props) => (
+                <MissingPets {...props} userLocation={userLocation} />
+              )}
+            />
+          </Switch>
+        </div>
       </Router>
 
       {/* <Router>

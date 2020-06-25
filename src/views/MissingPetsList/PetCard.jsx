@@ -99,6 +99,7 @@ const PetCard = ({ info }) => {
           className="h-48 w-40 shadow-lg"
           src={img}
         />
+
         <div
           style={cardStyle}
           className="flex flex-col justify-around shadow-md p-5 bg-white w-full h-40"

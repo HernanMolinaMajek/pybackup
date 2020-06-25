@@ -17864,6 +17864,14 @@ video {
   transition-delay: 1000ms;
 }
 
+.w-70 {
+  width: 20rem;
+}
+
+.rounded-xl {
+  border-radius: 1rem;
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;
