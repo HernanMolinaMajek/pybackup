@@ -6,9 +6,10 @@ import Pets from "../../fakePets.json";
 import Owners from "../../fakeOwners.json";
 import PetCard from "./PetCard";
 
-const Index = ({ userLocation }) => {
+const Index = ({ userLocation, match }) => {
   const [missingPets, setMissingPets] = useState([]);
-
+  
+  
   useEffect(() => {
     //setPets();
     getMissingPets().then((pets) => {

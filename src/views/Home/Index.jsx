@@ -9,75 +9,75 @@ import foundImg from "./found.png";
 
 //Modal.setAppElement("#root");
 const Index = ({ setUserLocationInMap }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [position, setPosition] = useState({});
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [position, setPosition] = useState({});
 
-  const setMapPosition = (position) => {
-    setPosition(position);
-  };
+  // const setMapPosition = (position) => {
+  //   setPosition(position);
+  // };
 
-  function isEmpty(val) {
-    return Object.entries(val).length === 0 ? true : false;
-  }
+  // function isEmpty(val) {
+  //   return Object.entries(val).length === 0 ? true : false;
+  // }
 
-  const openModal = () => {
-    setMapPosition({});
-    //setUserLocationInMap(position)
+  // const openModal = () => {
+  //   setMapPosition({});
+  //   //setUserLocationInMap(position)
 
-    setIsModalOpen(true);
-  };
+  //   setIsModalOpen(true);
+  // };
 
-  const closeModal = () => {
-    setMapPosition({});
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setMapPosition({});
+  //   setIsModalOpen(false);
+  // };
 
-  const aceptMapPosition = () => {
-    if (isEmpty(position)) {
-      alert("no selecciono");
-    } else {
-      setUserLocationInMap(position);
-      setIsModalOpen(false);
-    }
-  };
+  // const aceptMapPosition = () => {
+  //   if (isEmpty(position)) {
+  //     alert("no selecciono");
+  //   } else {
+  //     setUserLocationInMap(position);
+  //     setIsModalOpen(false);
+  //   }
+  // };
 
-  const mapButtonStyle = {
-    backgroundColor: "#306060",
+  // const mapButtonStyle = {
+  //   backgroundColor: "#306060",
 
-    borderTopRightRadius: "1rem",
-  };
+  //   borderTopRightRadius: "1rem",
+  // };
 
-  const buttonStyle = {
-    backgroundColor: "#306060",
-    borderRadius: "1rem",
-  };
+  // const buttonStyle = {
+  //   backgroundColor: "#306060",
+  //   borderRadius: "1rem",
+  // };
 
-  const formStyle = {
-    backgroundColor: "#F6F6F6",
-    borderRadius: "2.5rem",
-  };
-  const alertStyle = {
-    color: "#306060",
-  };
-  const inputStyle = {
-    borderRadius: "1rem",
-  };
+  // const formStyle = {
+  //   backgroundColor: "#F6F6F6",
+  //   borderRadius: "2.5rem",
+  // };
+  // const alertStyle = {
+  //   color: "#306060",
+  // };
+  // const inputStyle = {
+  //   borderRadius: "1rem",
+  // };
 
-  const modalStyle = {
-    content: {
-      position: "absolute",
-      top: "0px",
-      left: "0px",
-      right: "0px",
-      bottom: "0px",
-      //border: "1px solid rgb(204, 204, 204)",
-      //background: "rgb(255, 255, 255)",
-      overflow: "auto",
-      //borderRadius: "4px",
-      //outline: "none",
-      padding: "0px",
-    },
-  };
+  // const modalStyle = {
+  //   content: {
+  //     position: "absolute",
+  //     top: "0px",
+  //     left: "0px",
+  //     right: "0px",
+  //     bottom: "0px",
+  //     //border: "1px solid rgb(204, 204, 204)",
+  //     //background: "rgb(255, 255, 255)",
+  //     overflow: "auto",
+  //     //borderRadius: "4px",
+  //     //outline: "none",
+  //     padding: "0px",
+  //   },
+  // };
 
   const fondoStyle = {
     backgroundImage: `url(${fondo})`,
@@ -97,13 +97,13 @@ const Index = ({ setUserLocationInMap }) => {
             </h1>
             <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
               Podemos ayudarte brindando un espacio para que vos y otros puedan
-              encontrar o avistar a nustros mejores amigos.
+              encontrar o avistar a nuestros mejores amigos.
             </p>
           </div>
           {/* <img className="w-full h-full" src={fondo} alt="" /> */}
         </div>
 
-        <div className="flex w-full -mt-24 lg:-mt-12 mb-12 lg:mb-16 ">
+        {/* <div className="flex w-full -mt-24 lg:-mt-12 mb-12 lg:mb-16 ">
           <button
             style={buttonStyle}
             className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
@@ -119,7 +119,7 @@ const Index = ({ setUserLocationInMap }) => {
           >
             Ver lista de mascotas
           </Link>
-        </div>
+        </div> */}
 
         <div className="flex flex-col w-full ">
           <div className="px-4 lg:px-0 font-medium">
@@ -179,7 +179,7 @@ const Index = ({ setUserLocationInMap }) => {
         </div>
       </div>
 
-      <Modal
+      {/* <Modal
         
         onRequestClose={closeModal}
         isOpen={isModalOpen}
@@ -201,7 +201,7 @@ const Index = ({ setUserLocationInMap }) => {
             Aceptar
           </button>
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

@@ -9,9 +9,9 @@ const PetCard = ({ info }) => {
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const [petSigth, setPetSigth] = useState({});
 
-  console.log(info)
-  const { distance ,date} = info;
-  const { name:ownerName, phone } = info._ownerId;
+  console.log(info);
+  const { distance, date } = info;
+  const { name: ownerName, phone } = info._ownerId;
   const { age, breed, description, img, name, sex, type } = info._petId;
 
   const setMapPosition = (position) => {
@@ -96,9 +96,10 @@ const PetCard = ({ info }) => {
         <img
           onClick={openPetModal}
           style={{ borderRadius: "1rem" }}
-          className="h-48 w-40 shadow-lg"
+          className="h-48 w-40 object-cover object-top shadow-lg"
           src={img}
         />
+        {/* <div style={{ backgroundImage: `url(${img})` }} className="photo" ></div> */}
 
         <div
           style={cardStyle}
@@ -120,7 +121,7 @@ const PetCard = ({ info }) => {
         <div className="flex flex-col justify-between h-full">
           <div className="min-w-0">
             <div className="flex flex-col items-center relative">
-              <img style={{ height: "23rem" }} className="w-full" src={img} />
+              <img style={{ height: "23rem" }} className="w-full object-cover" src={img} />
 
               <button
                 onClick={closePetModal}

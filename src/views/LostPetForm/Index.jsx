@@ -249,7 +249,7 @@ const Index = ({ match }) => {
           >
             Reportar Pérdida
           </button>
-          {redirect && <Redirect to={"/"} />}
+          {redirect && <Redirect to={"/petadmin"} />}
         </div>
       </form>
 

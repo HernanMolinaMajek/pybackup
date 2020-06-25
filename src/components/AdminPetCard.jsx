@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const AdminPetCard = ({ info }) => {
   const { _id, img, sex, age, breed, type, name, isLost } = info;
+  const [isLostState, setIsLostState] = useState(isLost);
 
   const handlesubmit = async () => {
     //esta api esta muy fea cambiar y ver como re renderizar al padre
@@ -16,6 +17,7 @@ const AdminPetCard = ({ info }) => {
       });
 
       console.log(result);
+      setIsLostState(false)
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +43,7 @@ const AdminPetCard = ({ info }) => {
         </div>
 
         <div className="bg-gray-200 h-full w-full p-2">
-          {isLost ? (
+          {isLostState ? (
             <div className="flex justify-between items-center">
               <button
                 onClick={handlesubmit}
@@ -49,6 +51,7 @@ const AdminPetCard = ({ info }) => {
               >
                 Me encontraron
               </button>
+              
             </div>
           ) : (
             <div className="flex justify-between items-center">
