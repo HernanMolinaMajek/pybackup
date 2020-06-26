@@ -7,7 +7,20 @@ const Index = ({ userLocation, match }) => {
   const [missingPets, setMissingPets] = useState([]);
 
   useEffect(() => {
-    //setPets();
+    let loggedUserLocation = JSON.parse(localStorage.getItem("userLocation"));
+    if (loggedUserLocation === null) loggedUserLocation = {};
+
+    console.log(userLocation);
+    if (Object.entries(userLocation).length !== 0) {
+      orderAndSetMisingPetList();
+      console.log("entre por user location");
+    } else if (Object.entries(loggedUserLocation).length !== 0) {
+      orderAndSetMisingPetList();
+      console.log("entre por storage");
+    }
+  }, []);
+
+  const orderAndSetMisingPetList = () => {
     getMissingPets().then((pets) => {
       let pe = pets.map((mp) => {
         let parsedPosition = {
@@ -22,7 +35,7 @@ const Index = ({ userLocation, match }) => {
 
       setMissingPets(orderedList);
     });
-  }, []);
+  };
 
   const getMissingPets = async () => {
     const response = await fetch("http://localhost:3030/api/lost");

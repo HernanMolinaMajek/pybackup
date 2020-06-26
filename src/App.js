@@ -14,7 +14,6 @@ import PetAdmin from "./views/PetsAdmin/Index";
 import NewPetForm from "./views/NewPetForm/Index";
 import LostPetForm from "./views/LostPetForm/Index";
 
-
 const App = () => {
   const [user, setUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -27,28 +26,37 @@ const App = () => {
 
   useEffect(() => {
     //setUser(JSON.parse(localStorage.getItem('user')))
-    const user2 = JSON.parse(localStorage.getItem("user"));
-   
-    if (user2 !== null) {
-      setUser(user2);
+    let loggedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (loggedUser !== null) {
+      setUser(loggedUser);
       setIsAuthenticated(true);
     }
   }, []);
 
   const setUserLocationInMap = (position) => {
+    localStorage.setItem("userLocation", JSON.stringify(userLocation));
+
     setUserLocation(position);
   };
 
   const logOut = () => {
-    setIsAuthenticated(false);
     setUser({});
+    setIsAuthenticated(false);
     localStorage.clear();
   };
 
   const logIn = (user) => {
-    setIsAuthenticated(true);
     setUser(user);
-    localStorage.setItem("user", JSON.stringify(user));
+    setIsAuthenticated(true);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        _id: user._id,
+        name: user.name,
+        phone: user.phone,
+      })
+    );
   };
 
   // const getLoggedUser = (userId) => {
@@ -68,8 +76,7 @@ const App = () => {
           setUserLocationInMap={setUserLocationInMap}
           logOut={logOut}
         />
-        
-        
+
         <div className="lg:px-32">
           <Switch>
             <Route

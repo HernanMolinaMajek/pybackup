@@ -13,7 +13,6 @@ const NavBar = ({
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [position, setPosition] = useState({});
-  // const [redirect, setRedirect] = useState(false);
 
   // useEffect(() => {
   //   setRedirect(false);
@@ -47,9 +46,7 @@ const NavBar = ({
   };
 
   const aceptMapPosition = () => {
-    if (isEmpty(position)) {
-      alert("no selecciono");
-    } else {
+    if (!isEmpty(position)) {
       setUserLocationInMap(position);
       setIsModalOpen(false);
       // setRedirect(true);
@@ -234,9 +231,13 @@ const NavBar = ({
               ) : null}
               <button
                 onClick={aceptMapPosition}
-                className="bg-orange-200 w-1/3 mx-2"
+                className={
+                  isEmpty(position)
+                    ? "bg-red-200 w-1/3 mx-2"
+                    : "bg-green-200 w-1/3 mx-2"
+                }
               >
-                Aceptar
+                {isEmpty(position) ? "Seleccione una ubicacion" : "Aceptar"}
               </button>
             </div>
           </div>

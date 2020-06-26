@@ -25,10 +25,6 @@ const Index = ({ match }) => {
     });
   }, []);
 
-  // function isEmpty(val) {
-  //   return Object.entries(val).length === 0 ? true : false;
-  // }
-
   const getPet = async () => {
     const response = await fetch(
       `http://localhost:3030/api/pet/${match.params.id}`
@@ -113,9 +109,11 @@ const Index = ({ match }) => {
       dateError = value === null ? "Seleccione una fecha" : "";
     }
 
+    let hour = new Date().getHours();
+    let min = new Date().getMinutes();
     setForm((prevForm) => {
       let aux = Object.assign({}, prevForm);
-      aux.date = value;
+      aux.date = `${value}T${hour}:${min}`;
       aux.formErrors.date = dateError;
       return aux;
     });
@@ -186,6 +184,30 @@ const Index = ({ match }) => {
     if (window.matchMedia("(max-width: 640px)").matches) {
       return true;
     } else return false;
+  };
+
+  function isEmpty(val) {
+    return Object.entries(val).length === 0 ? true : false;
+  }
+
+  const aceptMapPosition = () => {
+    if (isEmpty(position)) {
+      form.formErrors.position = "Seleccione una posicion";
+      console.log("position es empty");
+    } else {
+      setForm((prevForm) => {
+        console.log("position esta lleno");
+        closeModal();
+        let aux = Object.assign({}, prevForm);
+        aux.position = position;
+        aux.formErrors.position = "";
+        return aux;
+      });
+    }
+  };
+
+  const setMapPosition = (position) => {
+    setPosition(position);
   };
 
   return (
@@ -288,7 +310,8 @@ const Index = ({ match }) => {
         style={isClientMobile() ? modalSmStyle : modalStyle}
       >
         <div className="flex flex-col realtive">
-          <Map setMapPosition={handleMapChange} circleOn={true} />
+          {/* <Map setMapPosition={handleMapChange} circleOn={true} /> */}
+          <Map setMapPosition={setMapPosition} circleOn={true} />
 
           <div className="bg-white w-full h-20 z-40 absolute bottom-0">
             <div className="flex flex-row  p-5 items-center  font-medium">
@@ -303,11 +326,21 @@ const Index = ({ match }) => {
                   Cerrar
                 </button>
               ) : null}
-              <button
+              {/* <button
                 onClick={closeModal}
                 className="bg-orange-200 w-1/3 mx-2"
               >
                 Aceptar
+              </button> */}
+              <button
+                onClick={aceptMapPosition}
+                className={
+                  isEmpty(position)
+                    ? "bg-red-200 w-1/3 mx-2"
+                    : "bg-green-200 w-1/3 mx-2"
+                }
+              >
+                {isEmpty(position) ? "Seleccione una ubicacion" : "Aceptar"}
               </button>
             </div>
           </div>

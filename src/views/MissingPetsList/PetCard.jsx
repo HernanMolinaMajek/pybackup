@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import moment from "moment";
+// import moment from "moment/locale/es";
 import Map from "../../components/Map";
-
+import moment from 'moment/min/moment-with-locales';
+moment.locale("es");
 Modal.setAppElement("#root");
 const PetCard = ({ info }) => {
   const [isPetModalOpen, setIsPetModalOpen] = useState(false);
@@ -78,7 +79,8 @@ const PetCard = ({ info }) => {
   };
 
   const howManydaysPassed = (date) => {
-    return moment(date, "YYYYMMDD").fromNow();
+    console.log(date)
+    return moment(date, "YYYY-MM-DDhh:mm").fromNow();
   };
 
   const openPetModal = () => {
