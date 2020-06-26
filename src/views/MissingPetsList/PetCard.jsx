@@ -3,8 +3,10 @@ import Modal from "react-modal";
 // import moment from "moment/locale/es";
 import Map from "../../components/Map";
 import moment from 'moment/min/moment-with-locales';
+
 moment.locale("es");
 Modal.setAppElement("#root");
+
 const PetCard = ({ info }) => {
   const [isPetModalOpen, setIsPetModalOpen] = useState(false);
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
