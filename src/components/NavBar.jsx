@@ -61,8 +61,38 @@ const NavBar = ({
     setIsMenuActive(!isMenuActive);
   };
 
+  const isClientMobile = () => {
+    if (window.matchMedia("(max-width: 640px)").matches) {
+      return true;
+    } else return false;
+  };
+
+  const modalStyle = {
+    content: {
+      position: "absolute",
+      top: "5rem",
+      left: "12rem",
+      right: "12rem",
+      bottom: "5rem",
+      overflow: "hidden",
+      padding: "0px",
+    },
+  };
+
+  const modalSmStyle = {
+    content: {
+      position: "absolute",
+      top: "0rem",
+      left: "0rem",
+      right: "0rem",
+      bottom: "0rem",
+      overflow: "hidden",
+      padding: "0px",
+    },
+  };
+
   return (
-    <nav className="flex flex-col items-start bg-white mb-3 lg:flex-row lg:justify-between lg:items-center lg:mx-5 relative ">
+    <nav className="flex flex-col items-start bg-orange-300 mb-6 lg:flex-row lg:justify-between lg:items-center lg:px-5 relative lg:w-full ">
       {/* {redirect && <Redirect to={"/missingPets"} />} */}
       <div className="flex flex-row w-full items-center p-5 justify-between lg:w-1/2 ">
         <div onClick={toogleMenu} className="text-gray-600 lg:hidden">
@@ -88,10 +118,10 @@ const NavBar = ({
       </div>
 
       <div className={`${isMenuActive ? "" : "hidden"} lg:flex`}>
-        <div className="text-md bg-gray-800 text-white absolute items-center top-0 mt-16 py-2 pl-5 z-40 w-screen lg:relative lg:w-full lg:mt-0 lg:justify-center lg:flex-row ">
+        <div className="text-md bg-gray-800 text-white absolute items-center top-0 mt-16 py-2 pl-5 z-40 w-screen lg:relative lg:w-full lg:mt-0  lg:bg-transparent ">
           {authenticated ? (
-            <div>
-              <div className="block lg:inline-block lg:mt-0  hover:text-white lg:mx-6 ">
+            <div className="flex flex-col lg:items-center lg:flex-row ">
+              <div className=" lg:mt-0  hover:text-white lg:mr-4 ">
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -102,14 +132,14 @@ const NavBar = ({
                 </Link>
               </div>
 
-              <div className="block mt-4 lg:inline-block lg:mt-0 hover:text-white lg:mx-6">
+              <div className=" mt-4  lg:mt-0 hover:text-white lg:mr-4">
                 <div className="cursor-pointer" onClick={openModal}>
                   Mascotas Perdidas
                 </div>
                 {/* {redirect && <Redirect to={"/missingPets"} />} */}
               </div>
 
-              <div className="block mt-4 lg:inline-block lg:mt-0 hover:text-white lg:mx-6 ">
+              <div className="mt-4  lg:mt-0 hover:text-white lg:mr-4 ">
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -120,7 +150,7 @@ const NavBar = ({
                 </Link>
               </div>
 
-              <div className="block mt-4 lg:inline-block lg:mt-0  hover:text-white lg:mx-6 ">
+              <div className="mt-4 lg:mt-0  hover:text-white lg:mr-4 ">
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -133,20 +163,20 @@ const NavBar = ({
 
               <div
                 onClick={logOut}
-                className="block mt-4 lg:inline-block lg:mt-0  hover:text-white lg:mx-6 "
+                className="mt-4 lg:mt-0 hover:text-white lg:mr-4 cursor-pointer"
               >
                 Cerrar sesión
               </div>
             </div>
           ) : (
-            <div>
-              <div className="block lg:inline-block lg:mt-0 hover:text-white lg:mx-6">
+            <div className="flex flex-col lg:items-center lg:flex-row">
+              <div className="lg:mt-0 hover:text-white lg:mr-4">
                 <div className="cursor-pointer" onClick={openModal}>
                   Mascotas Perdidas
                 </div>
                 {/* {redirect && <Redirect to={"/missingPets"} />} */}
               </div>
-              <div className="block mt-4 lg:inline-block lg:mt-0 hover:text-white lg:mx-6 lg:hidden ">
+              <div className="mt-4 lg:mt-0 hover:text-white lg:hidden ">
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -156,7 +186,7 @@ const NavBar = ({
                   Home
                 </Link>
               </div>
-              <div className="block mt-4 lg:inline-block lg:mt-0  hover:text-white lg:mx-6 ">
+              <div className="mt-4 lg:mt-0  hover:text-white lg:mr-4 ">
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -166,7 +196,7 @@ const NavBar = ({
                   Registrarse
                 </Link>
               </div>
-              <div className="block mt-4 lg:inline-block lg:mt-0 hover:text-white lg:mx-6 ">
+              <div className=" mt-4 lg:mt-0 hover:text-white lg:mr-4 ">
                 <Link
                   onClick={() => {
                     setIsMenuActive(false);
@@ -183,23 +213,41 @@ const NavBar = ({
       <Modal
         onRequestClose={closeModal}
         isOpen={isModalOpen}
-        className="overflow-hidden"
+        style={isClientMobile() ? modalSmStyle : modalStyle}
       >
         <div className="flex flex-col realtive">
-          <button onClick={closeModal} className="absolute z-40">
-            X
-          </button>
-
           <Map setMapPosition={setMapPosition} circleOn={false} />
 
-          <button
+          <div className="bg-white w-full h-20 z-40 absolute bottom-0">
+            <div className="flex flex-row  p-5 items-center  font-medium">
+              <p className="w-2/3 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                Dinos dónde te encuentras!
+              </p>
+
+              {isClientMobile() ? (
+                <button
+                  onClick={closeModal}
+                  className="bg-orange-200 w-1/3 mx-2"
+                >
+                  Cerrar
+                </button>
+              ) : null}
+              <button
+                onClick={aceptMapPosition}
+                className="bg-orange-200 w-1/3 mx-2"
+              >
+                Aceptar
+              </button>
+            </div>
+          </div>
+          {/* <button
             onClick={aceptMapPosition}
             style={mapButtonStyle}
             className="w-40 absolute z-40 bottom-0 hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
             type="button"
           >
             Aceptar
-          </button>
+          </button> */}
         </div>
       </Modal>
     </nav>

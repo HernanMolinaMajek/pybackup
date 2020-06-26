@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getDistance } from "geolib";
-
-import LossesPets from "../../fakeLosses.json";
-import Pets from "../../fakePets.json";
-import Owners from "../../fakeOwners.json";
+import nothing from "./nothing.png";
 import PetCard from "./PetCard";
 
 const Index = ({ userLocation, match }) => {
   const [missingPets, setMissingPets] = useState([]);
-  
-  
+
   useEffect(() => {
     //setPets();
     getMissingPets().then((pets) => {
@@ -85,17 +81,18 @@ const Index = ({ userLocation, match }) => {
 
   //   setMissingPets(orderedList);
   // };
+  const fondoStyle = {
+    backgroundImage: `url(${nothing})`,
+    width: "100%",
+    height: "100vh",
+    backgroundPosition: "center",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+  };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#F6F6F6",
-        borderTopLeftRadius: "2.5rem",
-        borderTopRightRadius: "2.5rem",
-      }}
-      className="h-full px-6 pt-10"
-    >
-      <div className="w-full">
+    <div className="mx-6">
+      {/* <div className="w-full">
         <div className="relative">
           <select
             style={{ borderRadius: "1rem" }}
@@ -118,11 +115,17 @@ const Index = ({ userLocation, match }) => {
             </svg>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {missingPets.map((pet) => (
-        <PetCard key={pet._id} info={pet} />
-      ))}
+      {missingPets.length > 0 ? (
+        missingPets.map((pet) => <PetCard key={pet._id} info={pet} />)
+      ) : (
+        <div style={fondoStyle} className="">
+          <h1 className="px-4 text-3xl lg:px-0 text-center font-medium text-gray-800 leading-none lg:text-left lg:text-6xl ">
+            No hay mascotas perdidas!
+          </h1>
+        </div>
+      )}
     </div>
   );
 };

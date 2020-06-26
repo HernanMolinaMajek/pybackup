@@ -122,7 +122,7 @@ const Index = ({ setUserLocationInMap }) => {
         </div> */}
 
         <div className="flex flex-col w-full ">
-          <div className="px-4 lg:px-0 font-medium">
+          <div className="px-4 -mt-16 lg:-mt-5 mb-16 lg:px-0 font-medium">
             <h1 className="text-3xl text-center text-gray-800 leading-none lg:text-center lg:text-6xl">
               Como funciona?
             </h1>
@@ -136,43 +136,37 @@ const Index = ({ setUserLocationInMap }) => {
             </p> */}
           </div>
 
-          <div className="flex flex-col items-center p-5 lg:flex-row lg:justify-around">
-            <div className="flex flex-col  shadow-lg rounded-xl w-70 mb-12">
+          <div className="flex flex-col lg:-mx-32 bg-orange-300 items-center p-8 lg:flex-row lg:justify-around">
+            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 lg:mb-0">
               <div className="flex justify-around">
                 <h1>1</h1>
                 <h1 className="">Crear mascota</h1>
               </div>
               <img className="w-full h-full" src={newImg} alt="" />
               <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                Al mismo tiempo que la comunidad puede ver una lista ordenada
-                por proximidad de ellos y dar aviso al dueño si los llega a
-                encontrar
+                Añade a tus mejores amigos y mantenos al tanto! zxjchzjxhczkxjhckzjx
               </p>
             </div>
 
-            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12">
+            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 lg:mb-0">
               <div className="flex justify-around">
-                <h1>1</h1>
+                <h1>2</h1>
                 <h1 className="">Declarar perdida</h1>
               </div>
               <img className="w-full h-full" src={lostImg} alt="" />
               <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                Al mismo tiempo que la comunidad puede ver una lista ordenada
-                por proximidad de ellos y dar aviso al dueño si los llega a
-                encontrar
+                Declara el extravio de tu mascota asi entre todos podemos ayudarte a encontrarla. Date prisa!
               </p>
             </div>
 
-            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12">
+            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 lg:mb-0">
               <div className="flex justify-around">
                 <h1>1</h1>
                 <h1 className="">Contactar con dueño</h1>
               </div>
               <img className="w-full h-full" src={foundImg} alt="" />
               <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                Al mismo tiempo que la comunidad puede ver una lista ordenada
-                por proximidad de ellos y dar aviso al dueño si los llega a
-                encontrar
+                Mantente en contacto y brinda informacion sobre el paradero de las mascotas. juntos podemos!
               </p>
             </div>
           </div>

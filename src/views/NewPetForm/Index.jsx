@@ -59,13 +59,35 @@ const Index = ({ match, user }) => {
       `http://localhost:3030/api/pet/${match.params.id}`
     );
     const data = await response.json();
+    console.log("gett petts");
     return data[0];
+  };
+
+  const deletePet = async () => {
+    console.log("delete petts");
+    try {
+      let resutl = await fetch(`http://localhost:3030/api/pet/${form._id}`, {
+        method: "delete",
+        cors: "no-cors",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        //body: JSON.stringify(form),
+      });
+      console.log(resutl);
+      setRedirect(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const submitData = async () => {
     const formData = new FormData();
     for (const prop in form) {
       formData.append(prop, form[prop]);
+      console.log("prop",prop)
+      console.log("form[prop]",form[prop])
     }
     formData.append("img", imgState);
 
@@ -229,7 +251,7 @@ const Index = ({ match, user }) => {
 
   return (
     <div className="flex justify-center items-center w-full h-full">
-      {redirect && (<Redirect to="/petadmin"/>)}
+      {redirect && <Redirect to="/petadmin" />}
       <form
         noValidate
         onSubmit={handleSubmit}
@@ -418,6 +440,18 @@ const Index = ({ match, user }) => {
             Bienvenido
           </button>
         </div>
+        {isEditig ? (
+          <div className="flex justify-center lg:justify-end">
+            <button
+              style={buttonStyle}
+              className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+              onClick={deletePet}
+              type="button"
+            >
+              Eliminar Mascota
+            </button>
+          </div>
+        ) : null}
       </form>
     </div>
   );

@@ -67,6 +67,12 @@ const PetCard = ({ info }) => {
     },
   };
 
+  const isClientMobile = () => {
+    if (window.matchMedia("(max-width: 640px)").matches) {
+      return true;
+    } else return false;
+  };
+
   const convertToKm = (m) => {
     return (m / 1000).toFixed(2);
   };
@@ -92,18 +98,17 @@ const PetCard = ({ info }) => {
 
   return (
     <div className="my-6">
-      <div className="flex items-center">
+      {/* <div className="flex items-center">
         <img
           onClick={openPetModal}
           style={{ borderRadius: "1rem" }}
-          className="h-48 w-40 object-cover object-top shadow-lg"
+          className="h-48 w-40 object-cover shadow-lg lg:w-1/3 lg:h-64 lg:pointer-events-none"
           src={img}
         />
-        {/* <div style={{ backgroundImage: `url(${img})` }} className="photo" ></div> */}
-
+      
         <div
           style={cardStyle}
-          className="flex flex-col justify-around shadow-md p-5 bg-white w-full h-40"
+          className="flex flex-col justify-around shadow-md p-5 bg-white w-full h-40 lg:h-56"
         >
           <h1 className="text-lg">{name}</h1>
           <p>{convertToKm(distance)} kilometros</p>
@@ -111,7 +116,56 @@ const PetCard = ({ info }) => {
           <p>{age} años</p>
           <p>{howManydaysPassed(date)}</p>
         </div>
-      </div>
+      </div> */}
+
+      {isClientMobile() ? (
+        <div className="flex items-center">
+          <img
+            onClick={openPetModal}
+            style={{ borderRadius: "1rem" }}
+            className="h-48 w-40 object-cover shadow-lg lg:w-1/3 lg:h-64 lg:pointer-events-none"
+            src={img}
+          />
+
+          <div
+            style={cardStyle}
+            className="flex flex-col justify-around shadow-md p-5 bg-white w-full h-40 lg:h-56"
+          >
+            <h1 className="text-lg">{name}</h1>
+            <p>{convertToKm(distance)} kilometros</p>
+            <p>{breed}</p>
+            <p>{age} años</p>
+            <p>{howManydaysPassed(date)}</p>
+          </div>
+        </div>
+      ) : (
+        <div className="flex items-center">
+          <img
+            onClick={openPetModal}
+            style={{ borderRadius: "1rem" }}
+            className="object-cover shadow-lg w-1/3 h-64 lg:pointer-events-none"
+            src={img}
+          />
+
+          <div
+            style={cardStyle}
+            className="flex flex-col justify-around shadow-md p-5 bg-white w-full h-40 lg:h-56"
+          >
+            <h1 className="text-lg">{name}</h1>
+            <p>{convertToKm(distance)} kilometros</p>
+            <p>{breed}</p>
+            <p>{age} años</p>
+            <p>{sex} </p>
+            <p>{type}</p>
+            <p>{ownerName}</p>
+            <p>{phone}</p>
+            <p>{howManydaysPassed(date)}</p>
+            <p className="text-base text-gray-600 leading-tight">
+              {description}
+            </p>
+          </div>
+        </div>
+      )}
 
       <Modal
         style={modalStyle}
@@ -121,7 +175,11 @@ const PetCard = ({ info }) => {
         <div className="flex flex-col justify-between h-full">
           <div className="min-w-0">
             <div className="flex flex-col items-center relative">
-              <img style={{ height: "23rem" }} className="w-full object-cover" src={img} />
+              <img
+                style={{ height: "23rem" }}
+                className="w-full object-cover"
+                src={img}
+              />
 
               <button
                 onClick={closePetModal}

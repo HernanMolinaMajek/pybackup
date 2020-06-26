@@ -14,6 +14,7 @@ import PetAdmin from "./views/PetsAdmin/Index";
 import NewPetForm from "./views/NewPetForm/Index";
 import LostPetForm from "./views/LostPetForm/Index";
 
+
 const App = () => {
   const [user, setUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -67,6 +68,7 @@ const App = () => {
           setUserLocationInMap={setUserLocationInMap}
           logOut={logOut}
         />
+        
         
         <div className="lg:px-32">
           <Switch>

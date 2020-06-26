@@ -8,12 +8,11 @@ import {
 
 const containerStyle = {
   width: "100%",
-  height: "100vh",
+  height: "90vh",
 };
 
 const options = {
-  disableDefaultUI: true,
-  zoomControl: true,
+  disableDefaultUI: true
 };
 
 const Tucuman = {

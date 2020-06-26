@@ -17872,6 +17872,11 @@ video {
   border-radius: 1rem;
 }
 
+.cardPhoto{
+  width: 24rem;
+  height: 17rem;
+}
+
 .photo {
   width: 22rem;
   height: 12rem;
