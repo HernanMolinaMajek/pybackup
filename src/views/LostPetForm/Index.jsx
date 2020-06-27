@@ -313,45 +313,31 @@ const Index = ({ match }) => {
           {/* <Map setMapPosition={handleMapChange} circleOn={true} /> */}
           <Map setMapPosition={setMapPosition} circleOn={true} />
 
-          <div className="bg-white w-full h-20 z-40 absolute bottom-0">
-            <div className="flex flex-row  p-5 items-center  font-medium">
-              <p className="w-2/3 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+          <div className="bg-orange w-full h-20 z-40 absolute bottom-0">
+            <div className="flex flex-row p-5 items-center font-medium">
+              <p className="w-2/3 text-center text-base font-bold text-white leading-tight lg:text-xl lg:text-left">
                 Dinos dónde fue que se perdió..
               </p>
               {isClientMobile() ? (
                 <button
                   onClick={closeModal}
-                  className="bg-orange-200 w-1/3 mx-2"
+                  className="bg-transparent text-white font-semibold py-2 px-4 border border-white rounded w-1/3 mx-2"
                 >
                   Cerrar
                 </button>
               ) : null}
-              {/* <button
-                onClick={closeModal}
-                className="bg-orange-200 w-1/3 mx-2"
-              >
-                Aceptar
-              </button> */}
               <button
                 onClick={aceptMapPosition}
                 className={
                   isEmpty(position)
-                    ? "bg-red-200 w-1/3 mx-2"
-                    : "bg-green-200 w-1/3 mx-2"
+                    ? "bg-red text-white font-bold py-2 px-4 rounded w-1/3 mx-2"
+                    : "bg-white text-link font-bold py-2 px-4 rounded w-1/3 mx-2"
                 }
               >
-                {isEmpty(position) ? "Seleccione una ubicacion" : "Aceptar"}
+                Aceptar
               </button>
             </div>
           </div>
-          {/* <button
-            onClick={aceptMapPosition}
-            style={mapButtonStyle}
-            className="w-40 absolute z-40 bottom-0 hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
-            type="button"
-          >
-            Aceptar
-          </button> */}
         </div>
       </Modal>
     </div>

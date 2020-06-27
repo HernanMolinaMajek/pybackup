@@ -97,7 +97,7 @@ const Index = ({ setUserLocationInMap }) => {
             </h1>
             <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
               Podemos ayudarte brindando un espacio para que vos y otros puedan
-              encontrar o avistar a nuestros mejores amigos.
+              encontrar a nuestros mejores amigos.
             </p>
           </div>
           {/* <img className="w-full h-full" src={fondo} alt="" /> */}
@@ -136,37 +136,34 @@ const Index = ({ setUserLocationInMap }) => {
             </p> */}
           </div>
 
-          <div className="flex flex-col lg:-mx-32 bg-orange-300 items-center p-8 lg:flex-row lg:justify-around">
+          <div className="flex flex-col lg:-mx-32 bg-orange items-center p-8 lg:flex-row lg:justify-around">
             <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 lg:mb-0">
-              <div className="flex justify-around">
-                <h1>1</h1>
-                <h1 className="">Crear mascota</h1>
-              </div>
+              <h1 className="mt-4 text-center text-2xl font-bold text-gray-800">Crear mascota</h1>
+
               <img className="w-full h-full" src={newImg} alt="" />
-              <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                Añade a tus mejores amigos y mantenos al tanto! zxjchzjxhczkxjhckzjx
+              <p className="mt-5 p-3 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                Para declarar una perdida y hacer que la comunidad ayude en la
+                busqueda el primer paso es crear un perfil de tu mascota con sus
+                caracteristicas unicas.
               </p>
             </div>
 
             <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 lg:mb-0">
-              <div className="flex justify-around">
-                <h1>2</h1>
-                <h1 className="">Declarar perdida</h1>
-              </div>
+              <h1 className="mt-4 text-center text-2xl font-bold text-gray-800">Declarar perdida</h1>
               <img className="w-full h-full" src={lostImg} alt="" />
-              <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                Declara el extravio de tu mascota asi entre todos podemos ayudarte a encontrarla. Date prisa!
+              <p className="mt-5 p-3 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                Luego de crear el perfil podrás declararlo como perdido,
+                haciendo que figure en la pantalla de mascotas perdidas para que
+                sea más facil identificarlo.
               </p>
             </div>
 
             <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 lg:mb-0">
-              <div className="flex justify-around">
-                <h1>1</h1>
-                <h1 className="">Contactar con dueño</h1>
-              </div>
+              <h1 className="mt-4 text-center text-2xl font-bold text-gray-800">Contactar con dueño</h1>
               <img className="w-full h-full" src={foundImg} alt="" />
-              <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                Mantente en contacto y brinda informacion sobre el paradero de las mascotas. juntos podemos!
+              <p className="mt-5 p-3 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                La comunidad de PerdidosYa® podrá avistar alguna mascota perdida
+                o si lo prefiere contactar directamente con su dueño.
               </p>
             </div>
           </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import Map from "./Map";
 import Modal from "react-modal";
+import logo from "./PerdidosYa_Logo_03.svg";
 
 const NavBar = ({
   authenticated,
@@ -89,7 +90,7 @@ const NavBar = ({
   };
 
   return (
-    <nav className="flex flex-col items-start bg-orange-300 mb-6 lg:flex-row lg:justify-between lg:items-center lg:px-5 relative lg:w-full ">
+    <nav className="flex flex-col items-start bg-orange shadow mb-6 lg:flex-row lg:justify-between lg:items-center lg:px-5 relative lg:w-full ">
       {/* {redirect && <Redirect to={"/missingPets"} />} */}
       <div className="flex flex-row w-full items-center p-5 justify-between lg:w-1/2 ">
         <div onClick={toogleMenu} className="text-gray-600 lg:hidden">
@@ -107,7 +108,10 @@ const NavBar = ({
             }}
             to={"/"}
           >
-            <h1 className="text-red-400">Perdidos ya</h1>
+            <div className="flex items-baseline">
+              <img className="w-12" src={logo} alt="" />
+              <h1 className="text-link font-bold -ml-6">erdídos Ya</h1>
+            </div>
           </Link>
         </div>
 
@@ -115,18 +119,21 @@ const NavBar = ({
       </div>
 
       <div className={`${isMenuActive ? "" : "hidden"} lg:flex`}>
-        <div className="text-md bg-gray-800 text-white absolute items-center top-0 mt-16 py-2 pl-5 z-40 w-screen lg:relative lg:w-full lg:mt-0  lg:bg-transparent ">
+        <div className="text-md bg-yellow shadow text-link font-bold absolute items-center top-0 mt-20 py-2 pl-5 z-40 w-screen lg:relative lg:w-full lg:mt-0 lg:bg-transparent lg:shadow-none">
           {authenticated ? (
             <div className="flex flex-col lg:items-center lg:flex-row ">
-              <div className=" lg:mt-0  hover:text-white lg:mr-4 ">
-                <Link
-                  onClick={() => {
-                    setIsMenuActive(false);
-                  }}
-                  to={"/"}
-                >
-                  Home
-                </Link>
+              <div className="flex lg:mt-0 lg:flex-row-reverse justify-between mr-5 hover:text-white lg:mr-4 ">
+                <div>
+                  <Link
+                    onClick={() => {
+                      setIsMenuActive(false);
+                    }}
+                    to={"/"}
+                  >
+                    Home
+                  </Link>
+                </div>
+                <h1 className="text-white lg:mr-4">{userName}</h1>
               </div>
 
               <div className=" mt-4  lg:mt-0 hover:text-white lg:mr-4">
@@ -134,17 +141,6 @@ const NavBar = ({
                   Mascotas Perdidas
                 </div>
                 {/* {redirect && <Redirect to={"/missingPets"} />} */}
-              </div>
-
-              <div className="mt-4  lg:mt-0 hover:text-white lg:mr-4 ">
-                <Link
-                  onClick={() => {
-                    setIsMenuActive(false);
-                  }}
-                  to={"/userAdmin"}
-                >
-                  {userName}
-                </Link>
               </div>
 
               <div className="mt-4 lg:mt-0  hover:text-white lg:mr-4 ">
@@ -215,16 +211,16 @@ const NavBar = ({
         <div className="flex flex-col realtive">
           <Map setMapPosition={setMapPosition} circleOn={false} />
 
-          <div className="bg-white w-full h-20 z-40 absolute bottom-0">
+          <div className="bg-orange w-full h-20 z-40 absolute bottom-0">
             <div className="flex flex-row  p-5 items-center  font-medium">
-              <p className="w-2/3 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+              <p className="w-2/3 text-center text-base font-bold text-white leading-tight lg:text-xl lg:text-left">
                 Dinos dónde te encuentras!
               </p>
 
               {isClientMobile() ? (
                 <button
                   onClick={closeModal}
-                  className="bg-orange-200 w-1/3 mx-2"
+                  className="bg-transparent text-white font-semibold py-2 px-4 border border-white rounded w-1/3 mx-2"
                 >
                   Cerrar
                 </button>
@@ -233,11 +229,11 @@ const NavBar = ({
                 onClick={aceptMapPosition}
                 className={
                   isEmpty(position)
-                    ? "bg-red-200 w-1/3 mx-2"
-                    : "bg-green-200 w-1/3 mx-2"
+                    ? "bg-red text-white font-bold py-2 px-4 rounded w-1/3 mx-2"
+                    : "bg-white text-link font-bold py-2 px-4 rounded w-1/3 mx-2"
                 }
               >
-                {isEmpty(position) ? "Seleccione una ubicacion" : "Aceptar"}
+                Aceptar
               </button>
             </div>
           </div>

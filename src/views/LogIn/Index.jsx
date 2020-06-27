@@ -112,13 +112,14 @@ const Index = ({ logIn }) => {
   };
 
   return (
-    <div className="flex justify-center  items-center h-full mt-10 p-5 ">
-      <form
+    <div className="flex justify-center items-center h-full mt-10 p-5 ">
+      {/* <form
         noValidate
         onSubmit={handleSubmit}
         //style={formStyle}
         className="w-full max-w-lg bg-gray-200 shadow-md px-8 pt-6 pb-8 "
-      >
+      > */}
+        <form className="bg-transparent border border-gray-500 shadow rounded-md px-8 pt-6 pb-8 mb-4">
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -131,7 +132,7 @@ const Index = ({ logIn }) => {
               noValidate
               //style={inputStyle}
               onChange={onHandleChange}
-              className="appearance-none block bg-green-200 w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               name="email"
               type="email"
             ></input>

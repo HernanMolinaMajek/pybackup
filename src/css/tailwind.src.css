@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-orange {
+  background-color: #f4ca36;
+}
+
+.bg-yellow {
+  background-color: #f5d358;
+}
+
+.top-1 {
+  top: 1rem;
+}
+
+.bg-red {
+  background-color: #e16c40;
+}
+.text-link {
+  color: #e16c40;
+}
 .w-70 {
   width: 20rem;
 }
@@ -9,10 +27,9 @@
   border-radius: 1rem;
 }
 
-.cardPhoto{
+.cardPhoto {
   width: 24rem;
   height: 17rem;
-  
 }
 
 .photo {
