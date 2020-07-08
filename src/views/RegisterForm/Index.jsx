@@ -65,7 +65,7 @@ const Index = ({ logIn }) => {
         if (form.name === "") aux.name = "Debe ingresar un nombre";
         if (form.phone === "")
           aux.phone = "Debe ingresar un numero de telefono";
-        if (form.email === "") aux.email = "Debe ingresar un email";
+        if (form.email === "") aux.email = "Debe ingresar un Email";
         if (form.password === "") aux.password = "Debe ingresar una contraseña";
         return aux;
       });
@@ -98,7 +98,7 @@ const Index = ({ logIn }) => {
         break;
       }
       case "email": {
-        errors.email = emailRegex.test(value) ? "" : "Debe ser un mail valido";
+        errors.email = emailRegex.test(value) ? "" : "Debe ser un Email valido";
         break;
       }
       default:
@@ -148,15 +148,15 @@ const Index = ({ logIn }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full p-8 ">
+    <div className="flex justify-center items-center mx-3 mt-12 lg:mt-20 p-5">
       <form
         noValidate
         onSubmit={handleSubmit}
-        style={formStyle}
-        className="w-full max-w-lg bg-white shadow-md px-8 pt-6 pb-8 mb-4"
+        // style={formStyle}
+        className="bg-transparent border border-gray-500 shadow lg:w-1/2 rounded-xl px-8 pt-6 pb-8 mb-4"
       >
         <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <div className="w-full md:w-1/2 px-3 mb-6">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="name"
@@ -166,8 +166,8 @@ const Index = ({ logIn }) => {
             <input
               onChange={onHandleChange}
               noValidate
-              style={inputStyle}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              // style={inputStyle}
+              className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="name"
               type="text"
               maxLength="15"
@@ -177,7 +177,7 @@ const Index = ({ logIn }) => {
             )}
           </div>
 
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <div className="w-full md:w-1/2 px-3 mb-6 ">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
               htmlFor="phone"
@@ -187,8 +187,8 @@ const Index = ({ logIn }) => {
             <input
               noValidate
               onChange={onHandleChange}
-              style={inputStyle}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              // style={inputStyle}
+              className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="phone"
               type="number"
             ></input>
@@ -207,8 +207,8 @@ const Index = ({ logIn }) => {
             <input
               noValidate
               onChange={onHandleChange}
-              style={inputStyle}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              // style={inputStyle}
+              className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="email"
               type="email"
               maxLength="20"
@@ -228,8 +228,8 @@ const Index = ({ logIn }) => {
             <input
               noValidate
               onChange={onHandleChange}
-              style={inputStyle}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              // style={inputStyle}
+              className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="password"
               type="password"
               maxLength="20"
@@ -240,13 +240,13 @@ const Index = ({ logIn }) => {
           </div>
         </div>
 
-        <div className="flex justify-center lg:justify-end">
+        <div className="flex justify-center lg:justify-center">
           <button
-            style={buttonStyle}
-            className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+            // style={buttonStyle}
+            className="w-1/2 bg-red text-white font-bold py-2 px-4 rounded shadow"
             type="submit"
           >
-            Finalizar
+            Crear cuenta
           </button>
           {redirect && <Redirect to={"/"} />}
         </div>

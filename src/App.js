@@ -68,7 +68,7 @@ const App = () => {
   // };
 
   return (
-    <div className="bg-white">
+    <div className="">
       <Router>
         <NavBar
           userName={user.name}

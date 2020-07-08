@@ -145,17 +145,11 @@ const Index = ({ match }) => {
     borderTopRightRadius: "1rem",
   };
 
-  const formStyle = {
-    backgroundColor: "#F6F6F6",
-    borderRadius: "2.5rem",
-  };
+ 
   const alertStyle = {
     color: "#306060",
   };
-  const inputStyle = {
-    borderRadius: "1rem",
-  };
-
+  
   const modalStyle = {
     content: {
       position: "absolute",
@@ -211,12 +205,12 @@ const Index = ({ match }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full mt-10 p-5 ">
+    <div className="flex justify-center items-center mx-3 mt-12 p-5">
       <form
         noValidate
         onSubmit={handleSubmit}
-        style={formStyle}
-        className="w-full max-w-lg shadow-md px-8 pt-6 pb-8 "
+       
+        className="bg-transparent border border-gray-500 shadow w-full rounded-xl px-8 pt-6 pb-8 mb-4"
       >
         <div className="flex justify-center mt-1 mb-8">
           <p style={alertStyle} className="text-lg italic">
@@ -233,13 +227,16 @@ const Index = ({ match }) => {
             </label>
             <input
               noValidate
-              style={inputStyle}
+              
               onChange={handleDateChange}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="date"
               type="date"
             ></input>
-            {form.date === null ? form.formErrors.date : ""}
+            {/* {form.date === null ? form.formErrors.date : ""} */}
+            {form.date === null && (
+              <span className="text-red-500">{form.formErrors.date}</span>
+            )}
           </div>
 
           <div className="w-full md:w-1/2 mb-6 px-3">
@@ -250,15 +247,17 @@ const Index = ({ match }) => {
               Lugar de pérdida
             </label>
             <div
-              style={inputStyle}
               className={`${
                 form.position === null ? "" : "bg-green-200"
-              } flex justify-center appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              } flex justify-center items-center appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none cursor-pointer`}
               onClick={openModal}
             >
               Selecciona la ubicación
             </div>
-            {form.position === null ? form.formErrors.position : ""}
+            {/* {form.position === null ? form.formErrors.position : ""} */}
+            {form.position === null && (
+              <span className="text-red-500">{form.formErrors.position}</span>
+            )}
           </div>
           {/* 
           <div className="w-full  mb-6 px-3">
@@ -277,10 +276,10 @@ const Index = ({ match }) => {
           </div> */}
         </div>
 
-        <div className="flex justify-center lg:justify-end">
+        <div className="flex justify-center lg:justify-center">
           <button
-            style={buttonStyle}
-            className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+            
+            className="w-1/2 bg-red text-white font-bold py-2 px-2 rounded shadow"
             type="submit"
           >
             Reportar Pérdida

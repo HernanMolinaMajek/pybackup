@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getDistance } from "geolib";
-import nothing from "./nothing.png";
+import nothing from "./nothing2.png";
 import PetCard from "./PetCard";
+import Modal from "react-modal";
+import Map from "../../components/MissingPetMap";
 
 const Index = ({ userLocation, match }) => {
   const [missingPets, setMissingPets] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     let loggedUserLocation = JSON.parse(localStorage.getItem("userLocation"));
@@ -20,6 +23,20 @@ const Index = ({ userLocation, match }) => {
     }
   }, []);
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const isClientMobile = () => {
+    if (window.matchMedia("(max-width: 640px)").matches) {
+      return true;
+    } else return false;
+  };
+
   const orderAndSetMisingPetList = () => {
     getMissingPets().then((pets) => {
       let pe = pets.map((mp) => {
@@ -32,7 +49,7 @@ const Index = ({ userLocation, match }) => {
       });
 
       let orderedList = pe.sort((a, b) => (a.distance > b.distance ? 1 : -1));
-
+      console.log(pets);
       setMissingPets(orderedList);
     });
   };
@@ -102,7 +119,29 @@ const Index = ({ userLocation, match }) => {
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
   };
+  const modalStyle = {
+    content: {
+      position: "absolute",
+      top: "5rem",
+      left: "12rem",
+      right: "12rem",
+      bottom: "5rem",
+      overflow: "hidden",
+      padding: "0px",
+    },
+  };
 
+  const modalSmStyle = {
+    content: {
+      position: "absolute",
+      top: "0rem",
+      left: "0rem",
+      right: "0rem",
+      bottom: "0rem",
+      overflow: "hidden",
+      padding: "0px",
+    },
+  };
   return (
     <div className="mx-6">
       {/* <div className="w-full">
@@ -130,6 +169,15 @@ const Index = ({ userLocation, match }) => {
         </div>
       </div> */}
 
+
+      {/* boton de mascotas tiene que ser fix */}
+      {/* <button
+        onClick={openModal}
+        className="bg-white text-link font-bold py-2 px-4 rounded w-1/3 mx-2"
+      >
+        Cerrar
+      </button> */}
+
       {missingPets.length > 0 ? (
         missingPets.map((pet) => <PetCard key={pet._id} info={pet} />)
       ) : (
@@ -139,6 +187,35 @@ const Index = ({ userLocation, match }) => {
           </h1>
         </div>
       )}
+
+      <Modal
+        onRequestClose={closeModal}
+        isOpen={isModalOpen}
+        style={isClientMobile() ? modalSmStyle : modalStyle}
+      >
+        <div className="flex flex-col realtive">
+          <Map user={userLocation} pets={missingPets} />
+
+          <div className="bg-orange w-full h-20 z-40 absolute bottom-0">
+            <div className="flex flex-row  p-5 items-center  font-medium">
+              <button
+                onClick={closeModal}
+                className="bg-white text-link font-bold py-2 px-4 rounded w-1/3 mx-2"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+          {/* <button
+            onClick={aceptMapPosition}
+            style={mapButtonStyle}
+            className="w-40 absolute z-40 bottom-0 hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+            type="button"
+          >
+            Aceptar
+          </button> */}
+        </div>
+      </Modal>
     </div>
   );
 };

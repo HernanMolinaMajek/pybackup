@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 // import moment from "moment/locale/es";
 import Map from "../../components/Map";
-import moment from 'moment/min/moment-with-locales';
+import moment from "moment/min/moment-with-locales";
 
 moment.locale("es");
 Modal.setAppElement("#root");
@@ -81,7 +81,7 @@ const PetCard = ({ info }) => {
   };
 
   const howManydaysPassed = (date) => {
-    console.log(date)
+    console.log(date);
     return moment(date, "YYYY-MM-DDhh:mm").fromNow();
   };
 
@@ -189,7 +189,7 @@ const PetCard = ({ info }) => {
                 onClick={closePetModal}
                 className="absolute top-0 left-0 bg-white rounded-full py-2 px-2 m-2"
               >
-                X
+                ❌
               </button>
               <div
                 style={cardInModalStyle}
@@ -215,21 +215,22 @@ const PetCard = ({ info }) => {
                 </h1>
                 <p className="text-sm text-gray-600">{type}</p>
               </div>
-              <p className="text-base text-gray-600 leading-tight">
+              <p className="text-base text-gray-600 break-all leading-tight">
                 {description}
               </p>
             </div>
           </div>
 
           <div
-            style={{
-              backgroundColor: "#F6F6F6",
-              borderTopLeftRadius: "2.5rem",
-              borderTopRightRadius: "2.5rem",
-            }}
+            // style={{
+            //   backgroundColor: "#F6F6F6",
+            //   borderTopLeftRadius: "2.5rem",
+            //   borderTopRightRadius: "2.5rem",
+            // }}
             className="flex flex-col justify-center text-gray-700 w-full pt-1 pb-3"
           >
-            <div className="mt-2 mx-4 mt-5 flex flex-col ml-6">
+            <div className="mx-4 border-b-2"></div>
+            <div className="mt-2 mx-4 flex flex-col ml-6">
               <h1 className="text-xl text-gray-700 font-semibold -mb-1">
                 {ownerName}
               </h1>
@@ -245,8 +246,8 @@ const PetCard = ({ info }) => {
                 ojo
               </button>
               <button
-                style={buttonStyle}
-                className="w-2/3 hover:bg-blue-700 text-gray-200 text-lg font-medium py-3 shadow-lg focus:outline-none focus:shadow-outline"
+                onClick={() => window.open(`https://api.whatsapp.com/send?phone=${phone}&text=Hola!%20encontré%20a%20%20tu%20mascota`)}
+                className="w-2/3 bg-red text-white font-bold py-2 px-4 rounded"
                 type="button"
               >
                 {phone}

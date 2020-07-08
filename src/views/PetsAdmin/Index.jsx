@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 //import fakePets from "../../fakePets.json";
 import PetCard from "../../components/AdminPetCard";
 import { Link } from "react-router-dom";
-import nothing from "./nothing.png";
+import nothing from "./nothing2.png";
 
 const Index = ({ user }) => {
   const [userPets, setUserPets] = useState([]);
@@ -51,7 +51,7 @@ const Index = ({ user }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col relative">
       {userPets.length > 0 ? (
         userPets.map((pet) => <PetCard key={pet._id} info={pet} />)
       ) : (
@@ -62,13 +62,12 @@ const Index = ({ user }) => {
         </div>
       )}
 
-      <Link to="/newPetForm" className="absolute bottom-0 sticky z-0 w-full">
+      <Link to="/newPetForm" className="absolute sticky bottom-0 mb-12 right-0 z-10">
         <button
-          style={buttonStyle}
-          className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+          className="text-6xl text-link bg-gray-100 px-3 pb-1 leading-none rounded-full shadow-md"
           type="submit"
         >
-          Nueva mascota
+          +
         </button>
       </Link>
     </div>

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import Map from "../../components/Map";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
-import fondo from "./fondo.png";
-import newImg from "./new.png";
-import lostImg from "./lost.png";
-import foundImg from "./found.png";
+import fondo from "./fondo2.png";
+import newImg from "./new4.png";
+import lostImg from "./lost4.png";
+import foundImg from "./found4.png";
 
 //Modal.setAppElement("#root");
 const Index = ({ setUserLocationInMap }) => {
@@ -122,9 +122,9 @@ const Index = ({ setUserLocationInMap }) => {
         </div> */}
 
         <div className="flex flex-col w-full ">
-          <div className="px-4 -mt-16 lg:-mt-5 mb-16 lg:px-0 font-medium">
+          <div className="px-4 mt-6 lg:mt-6 mb-16 lg:px-0 font-medium">
             <h1 className="text-3xl text-center text-gray-800 leading-none lg:text-center lg:text-6xl">
-              Como funciona?
+              Cómo funciona?
             </h1>
             {/* <p className="mt-5 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
               Distintos usuarios publican sus mascotas extraviadas en un area
@@ -136,34 +136,29 @@ const Index = ({ setUserLocationInMap }) => {
             </p> */}
           </div>
 
-          <div className="flex flex-col lg:-mx-32 bg-orange items-center p-8 lg:flex-row lg:justify-around">
-            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 lg:mb-0">
-              <h1 className="mt-4 text-center text-2xl font-bold text-gray-800">Crear mascota</h1>
+          <div className="flex flex-col lg:-mx-32 lg:px-40 bg-orange items-center p-8 lg:flex-row lg:justify-around">
+            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 p-5 lg:mb-0">
+              <h1 className="mt-4 text-center lg:text-center text-2xl font-bold text-gray-800 mb-10">Crear mascota</h1>
 
               <img className="w-full h-full" src={newImg} alt="" />
-              <p className="mt-5 p-3 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                Para declarar una perdida y hacer que la comunidad ayude en la
-                busqueda el primer paso es crear un perfil de tu mascota con sus
-                caracteristicas unicas.
+              <p className="mt-2 p-3 text-center lg:text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                Añade a tus mejores amigos y manten a la comunidad informados sobre el estado de ellos. 
               </p>
             </div>
 
-            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 lg:mb-0">
-              <h1 className="mt-4 text-center text-2xl font-bold text-gray-800">Declarar perdida</h1>
+            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 p-5 lg:mb-0">
+              <h1 className="mt-4 text-center lg:text-center text-2xl font-bold text-gray-800 mb-10">Declarar perdida</h1>
               <img className="w-full h-full" src={lostImg} alt="" />
-              <p className="mt-5 p-3 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                Luego de crear el perfil podrás declararlo como perdido,
-                haciendo que figure en la pantalla de mascotas perdidas para que
-                sea más facil identificarlo.
+              <p className="mt-2 p-3 text-center lg:text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                Declara el extravio de tu mascota lo antes posible asi entre todos podemos ayudarte.
               </p>
             </div>
 
-            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 lg:mb-0">
-              <h1 className="mt-4 text-center text-2xl font-bold text-gray-800">Contactar con dueño</h1>
+            <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 p-5 lg:mb-0">
+              <h1 className="mt-4 text-center lg:text-center text-2xl font-bold text-gray-800 mb-10">Contactar con dueño</h1>
               <img className="w-full h-full" src={foundImg} alt="" />
-              <p className="mt-5 p-3 text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
-                La comunidad de PerdidosYa® podrá avistar alguna mascota perdida
-                o si lo prefiere contactar directamente con su dueño.
+              <p className="mt-2 p-3 text-center lg:text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
+                Dale un vistazo a la lista de mascotas perdidas y contacta inmediatamente a sus dueños si los ves.
               </p>
             </div>
           </div>

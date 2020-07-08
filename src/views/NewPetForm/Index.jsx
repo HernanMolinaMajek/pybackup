@@ -39,21 +39,7 @@ const Index = ({ match, user }) => {
     }
   }, []);
 
-  const buttonStyle = {
-    backgroundColor: "#306060",
-    borderRadius: "1rem",
-  };
-  const formStyle = {
-    backgroundColor: "#F6F6F6",
-    borderRadius: "2.5rem",
-  };
-  const alertStyle = {
-    color: "#306060",
-  };
-  const inputStyle = {
-    borderRadius: "1rem",
-  };
-
+  
   const getPet = async () => {
     const response = await fetch(
       `http://localhost:3030/api/pet/${match.params.id}`
@@ -86,8 +72,8 @@ const Index = ({ match, user }) => {
     const formData = new FormData();
     for (const prop in form) {
       formData.append(prop, form[prop]);
-      console.log("prop",prop)
-      console.log("form[prop]",form[prop])
+      console.log("prop", prop);
+      console.log("form[prop]", form[prop]);
     }
     formData.append("img", imgState);
 
@@ -196,67 +182,15 @@ const Index = ({ match, user }) => {
     return valid;
   };
 
-  // const onHandleChange = (e) => {
-  //   e.preventDefault();
-  //   const { name, value } = e.target;
-  //   let formErrors = form.formErrors;
-  //   let mesage = "No puede estar vacio";
-  //   switch (name) {
-  //     case "name":
-  //       formErrors.name = value.length > 0 ? "" : mesage;
-  //       break;
-  //     case "breed":
-  //       formErrors.breed = value.length > 0 ? "" : mesage;
-  //       break;
-  //     case "age":
-  //       formErrors.age = value.length > 0 ? "" : mesage;
-  //       break;
-  //     case "description":
-  //       formErrors.description = value.length > 0 ? "" : mesage;
-  //       break;
-  //     case "img":
-  //       formErrors.img = value.length > 0 ? "" : mesage;
-  //       break;
-  //     default:
-  //       break;
-  //   }
-
-  //   setForm((prevForm) => {
-  //     let aux = Object.assign({}, prevForm);
-  //     aux.formErrors = formErrors;
-  //     //aux[name] = value;
-  //     return aux;
-  //   });
-  //   console.log(form);
-  // };
-
-  // const onHandelSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (formValid(form)) {
-  //     submit();
-  //   } else {
-  //     setForm((prevForm) => {
-  //       let aux = Object.assign({}, prevForm);
-  //       if (aux.name === null) aux.formErrors.name = "No puede estar vacio";
-  //       if (aux.breed === null) aux.formErrors.breed = "No puede estar vacio";
-  //       if (aux.description === null)
-  //         aux.formErrors.description = "No puede estar vacio";
-  //       if (aux.age === null) aux.formErrors.age = "No puede estar vacio";
-  //       if (aux.img === null) aux.formErrors.img = "No puede estar vacio";
-
-  //       return aux;
-  //     });
-  //   }
-  // };
-
+ 
   return (
-    <div className="flex justify-center items-center w-full h-full">
+    <div className="flex justify-center items-center mx-3 mt-12 p-5">
       {redirect && <Redirect to="/petadmin" />}
       <form
         noValidate
         onSubmit={handleSubmit}
-        style={formStyle}
-        className="w-full max-w-lg bg-white shadow-md px-8 pt-6 pb-8 mb-4"
+        // style={formStyle}
+        className="bg-transparent border border-gray-500 shadow w-full rounded-xl px-8 pt-6 pb-8 mb-4"
       >
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -271,8 +205,8 @@ const Index = ({ match, user }) => {
               onChange={onHandleChange}
               noValidate
               value={form.name}
-              style={inputStyle}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              // style={inputStyle}
+              className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="name"
               type="text"
             />
@@ -294,8 +228,8 @@ const Index = ({ match, user }) => {
                 onChange={onHandleChange}
                 noValidate
                 value={form.type}
-                style={inputStyle}
-                className="block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                // style={inputStyle}
+                className="appearance-none border bg-white rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
                 name="type"
               >
                 <option>Perro</option>
@@ -326,8 +260,7 @@ const Index = ({ match, user }) => {
                 onChange={onHandleChange}
                 noValidate
                 value={form.sex}
-                style={inputStyle}
-                className="block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none border rounded-sm h-12 w-full bg-white py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
                 name="sex"
               >
                 <option>Macho</option>
@@ -357,8 +290,7 @@ const Index = ({ match, user }) => {
               onChange={onHandleChange}
               value={form.breed}
               noValidate
-              style={inputStyle}
-              className="appearance-none  block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="breed"
               type="text"
             />
@@ -378,8 +310,7 @@ const Index = ({ match, user }) => {
               onChange={onHandleChange}
               noValidate
               value={form.age}
-              style={inputStyle}
-              className="appearance-none block w-full bg-white text-gray-700 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="age"
               type="number"
             />
@@ -400,8 +331,7 @@ const Index = ({ match, user }) => {
               onChange={onHandleChange}
               value={form.description}
               noValidate
-              style={inputStyle}
-              className="h-40 w-full focus:outline-none text-gray-700 p-3 leading-tight"
+              className="h-40 p-3 leading-tight appearance-none border rounded-sm  w-full text-gray-700 border-gray-400 leading-tight focus:outline-none"
               maxLength="225"
             />
             {formErrors.description.length > 0 && (
@@ -431,27 +361,42 @@ const Index = ({ match, user }) => {
           </div>
         </div>
 
-        <div className="flex justify-center lg:justify-end">
+        {/* <div className="flex justify-center lg:justify-center">
           <button
-            style={buttonStyle}
-            className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+            
+            className="w-1/2 bg-red text-white font-bold py-2 px-4 rounded shadow"
             type="submit"
           >
             Bienvenido
           </button>
-        </div>
+        </div> */}
         {isEditig ? (
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:justify-center">
             <button
-              style={buttonStyle}
-              className="w-full hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
+              className="w-1/2 bg-red text-white font-bold mx-4 py-2 px-4 rounded shadow"
               onClick={deletePet}
               type="button"
             >
               Eliminar Mascota
             </button>
+
+            <button
+              className="w-1/2 bg-red text-white font-bold mx-4 py-2 px-4 rounded shadow"
+              type="submit"
+            >
+              Guardar cambios
+            </button>
           </div>
-        ) : null}
+        ) : (
+          <div className="flex justify-center lg:justify-center">
+            <button
+              className="w-1/2 bg-red text-white font-bold py-2 px-4 rounded shadow"
+              type="submit"
+            >
+              Bienvenido
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );

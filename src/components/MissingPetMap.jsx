@@ -22,23 +22,10 @@ const Tucuman = {
   lng: -65.2226028,
 };
 
-const Map = ({ setMapPosition, circleOn }) => {
+const Map = ({ user, pets }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyDtAaoe-ahjqCGCMM7kMZ9qxDryQ2b2GHQ",
   });
-  const [dot, setDot] = useState({});
-  const [center, setCenter] = useState(Tucuman);
-
-  const onCLickHandle = (event) => {
-    let position = {
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng(),
-    };
-
-    setDot(position);
-    setMapPosition(position);
-    //setCenter(position)
-  };
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading map";
@@ -47,32 +34,34 @@ const Map = ({ setMapPosition, circleOn }) => {
       <GoogleMap
         mapContainerStyle={containerStyle}
         options={options}
-        center={center}
+        center={Tucuman}
         zoom={14}
-        onClick={(event) => {
-          //setDot({lat:event.latLng.lat(),lng:event.latLng.lng()})
-          onCLickHandle(event);
-        }}
       >
         <Marker
-          position={dot}
+          position={user}
           icon={{
-            url: circleOn ? petIcon : personIcon,
+            url: personIcon,
             scaledSize: new window.google.maps.Size(30, 30),
             origin: new window.google.maps.Point(0.0),
             anchor: new window.google.maps.Point(15, 15),
           }}
         />
-        {circleOn ? (
-          <Circle
-            center={dot}
-            radius={300}
-            options={{
-              fillColor: "#ff5656",
-              strokeColor: "#ff5656",
+
+        {pets.map((pet) => (
+          <Marker
+            key={pet._id}
+            position={{
+              lat: parseFloat(pet.location.lat),
+              lng: parseFloat(pet.location.lng),
+            }}
+            icon={{
+              url: petIcon,
+              scaledSize: new window.google.maps.Size(30, 30),
+              origin: new window.google.maps.Point(0.0),
+              anchor: new window.google.maps.Point(15, 15),
             }}
           />
-        ) : null}
+        ))}
       </GoogleMap>
     );
 };
