@@ -246,7 +246,7 @@ const PetCard = ({ info }) => {
                 ojo
               </button>
               <button
-                onClick={() => window.open(`https://api.whatsapp.com/send?phone=${phone}&text=Hola!%20encontré%20a%20%20tu%20mascota`)}
+                onClick={() => window.open(`https://api.whatsapp.com/send?phone=54${phone}&text=Hola!%20soy%20${ownerName}%20y%20encontré%20a%20%20tu%20mascota`)}
                 className="w-2/3 bg-red text-white font-bold py-2 px-4 rounded"
                 type="button"
               >

@@ -136,7 +136,7 @@ const Index = ({ setUserLocationInMap }) => {
             </p> */}
           </div>
 
-          <div className="flex flex-col lg:-mx-32 lg:px-40 bg-orange items-center p-8 lg:flex-row lg:justify-around">
+          <div className="flex flex-col lg:-mx-32  bg-orange items-center p-8 lg:flex-row lg:justify-around">
             <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 p-5 lg:mb-0">
               <h1 className="mt-4 text-center lg:text-center text-2xl font-bold text-gray-800 mb-10">Crear mascota</h1>
 

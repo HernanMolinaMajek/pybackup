@@ -308,7 +308,7 @@ const Index = ({ match }) => {
         isOpen={isModalOpen}
         style={isClientMobile() ? modalSmStyle : modalStyle}
       >
-        <div className="flex flex-col realtive">
+        <div className="flex flex-col realtive w-full h-full">
           {/* <Map setMapPosition={handleMapChange} circleOn={true} /> */}
           <Map setMapPosition={setMapPosition} circleOn={true} />
 

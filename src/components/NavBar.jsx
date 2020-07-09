@@ -208,7 +208,8 @@ const NavBar = ({
         isOpen={isModalOpen}
         style={isClientMobile() ? modalSmStyle : modalStyle}
       >
-        <div className="flex flex-col realtive">
+        <div className="flex flex-col realtive w-full h-full">
+         
           <Map setMapPosition={setMapPosition} circleOn={false} />
 
           <div className="bg-orange w-full h-20 z-40 absolute bottom-0">

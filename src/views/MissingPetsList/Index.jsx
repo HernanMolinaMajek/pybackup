@@ -171,12 +171,12 @@ const Index = ({ userLocation, match }) => {
 
 
       {/* boton de mascotas tiene que ser fix */}
-      {/* <button
+      <button
         onClick={openModal}
         className="bg-white text-link font-bold py-2 px-4 rounded w-1/3 mx-2"
       >
-        Cerrar
-      </button> */}
+        mapa
+      </button>
 
       {missingPets.length > 0 ? (
         missingPets.map((pet) => <PetCard key={pet._id} info={pet} />)
@@ -193,7 +193,7 @@ const Index = ({ userLocation, match }) => {
         isOpen={isModalOpen}
         style={isClientMobile() ? modalSmStyle : modalStyle}
       >
-        <div className="flex flex-col realtive">
+        <div className="flex flex-col realtive w-full h-full ">
           <Map user={userLocation} pets={missingPets} />
 
           <div className="bg-orange w-full h-20 z-40 absolute bottom-0">
