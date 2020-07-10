@@ -21,6 +21,10 @@ const PetCard = ({ info }) => {
     setPetSigth(position);
   };
 
+  const transformSexToIcon = (sex) => {
+    return sex === "Macho" ? "♂" : "♀";
+  };
+
   const cardStyle = {
     borderTopRightRadius: "1rem",
     borderBottomRightRadius: "1rem",
@@ -54,21 +58,21 @@ const PetCard = ({ info }) => {
     },
   };
 
-  const mapModalStyle = {
-    content: {
-      //position: "absolute",
-      // top: "0px",
-      // left: "0px",
-      // right: "0px",
-      // bottom: "0px",
-      // // border: "1px solid rgb(204, 204, 204)",
-      // background: "rgb(255, 255, 255)",
-      overflow: "auto",
-      //borderRadius: "0px",
-      outline: "none",
-      padding: "0px",
-    },
-  };
+  // const mapModalStyle = {
+  //   content: {
+  //     //position: "absolute",
+  //     // top: "0px",
+  //     // left: "0px",
+  //     // right: "0px",
+  //     // bottom: "0px",
+  //     // // border: "1px solid rgb(204, 204, 204)",
+  //     // background: "rgb(255, 255, 255)",
+  //     overflow: "auto",
+  //     //borderRadius: "0px",
+  //     outline: "none",
+  //     padding: "0px",
+  //   },
+  // };
 
   const isClientMobile = () => {
     if (window.matchMedia("(max-width: 640px)").matches) {
@@ -81,7 +85,6 @@ const PetCard = ({ info }) => {
   };
 
   const howManydaysPassed = (date) => {
-    console.log(date);
     return moment(date, "YYYY-MM-DDhh:mm").fromNow();
   };
 
@@ -123,7 +126,7 @@ const PetCard = ({ info }) => {
       </div> */}
 
       {isClientMobile() ? (
-        <div className="flex items-center">
+        <div className="flex items-center text-gray-700">
           <img
             onClick={openPetModal}
             style={{ borderRadius: "1rem" }}
@@ -133,17 +136,29 @@ const PetCard = ({ info }) => {
 
           <div
             style={cardStyle}
-            className="flex flex-col justify-around shadow-md p-5 bg-white w-full h-40 lg:h-56"
+            className="flex flex-col bg-gray-100 justify-around shadow-md p-5 bg-white w-full h-40 lg:h-56 leading-snug"
           >
-            <h1 className="text-lg">{name}</h1>
-            <p>{convertToKm(distance)} kilometros</p>
-            <p>{breed}</p>
-            <p>{age} años</p>
+            <div className="flex justify-between items-center">
+              <h1 className="text-2xl text-gray-700 font-semibold">{name}</h1>
+              <p className="text-4xl leading-none font-semibold">
+                {transformSexToIcon(sex)}
+              </p>
+            </div>
+
+            <p className="text-gray-600">
+              {breed} • {age} años
+            </p>
+
+            <p>
+              a <span className="font-semibold">{convertToKm(distance)}</span>
+              kilómetros
+            </p>
+
             <p>{howManydaysPassed(date)}</p>
           </div>
         </div>
       ) : (
-        <div className="flex items-center">
+        <div className="flex items-center text-gray-700 leading-snug">
           <img
             onClick={openPetModal}
             style={{ borderRadius: "1rem" }}
@@ -153,20 +168,42 @@ const PetCard = ({ info }) => {
 
           <div
             style={cardStyle}
-            className="flex flex-col justify-around shadow-md p-5 bg-white w-full h-40 lg:h-56"
+            className="flex flex-col overflow-hidden bg-gray-100 shadow-md justify-between bg-white w-full h-40 lg:h-56"
           >
-            <h1 className="text-lg">{name}</h1>
-            <p>{convertToKm(distance)} kilometros</p>
-            <p>{breed}</p>
-            <p>{age} años</p>
-            <p>{sex} </p>
-            <p>{type}</p>
-            <p>{ownerName}</p>
-            <p>{phone}</p>
-            <p>{howManydaysPassed(date)}</p>
-            <p className="text-base text-gray-600 leading-tight">
-              {description}
-            </p>
+            <div className="flex p-5">
+              <div className="w-1/3">
+                <h1 className="text-3xl text-gray-700 font-semibold">{name}</h1>
+                <p className="text-sm">
+                  {type} • {breed}{" "}
+                </p>
+                <p className="text-sm mb-3">
+                  {sex} de {age} {age === 1 ? "año" : "años"} de edad{" "}
+                </p>
+                <p>
+                  Perdido a <span className="font-semibold">{convertToKm(distance)}</span> kilómetros
+                </p>
+                <p>{howManydaysPassed(date)}</p>
+              </div>
+              <p className="w-2/3 ml-3 mt-6 break-all text-base text-gray-600 leading-tight">
+                {description}
+              </p>
+            </div>
+            <div className="flex justify-around p-1 items-center border-t-2 bg-gray-200 ">
+              <p>
+                Contactar con <span className="font-semibold">{ownerName}</span>
+              </p>
+              <button
+                onClick={() =>
+                  window.open(
+                    `https://api.whatsapp.com/send?phone=54${phone}&text=Hola%20${ownerName},%20encontré%20a%20%20tu%20mascota!`
+                  )
+                }
+                className="bg-red text-white font-bold py-2 px-4 rounded"
+                type="button"
+              >
+                {phone}
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -200,7 +237,9 @@ const PetCard = ({ info }) => {
                   <p className="">{sex}</p>
                 </div>
                 <div className="flex flex-row justify-between">
-                  <p className="text-sm text-gray-600">{breed}</p>
+                  <p className="text-sm text-gray-600">
+                    {type} • {breed}
+                  </p>
                   <p className="text-sm text-gray-600">{age} años de edad</p>
                 </div>
                 <p className="text-base text-gray-600">
@@ -209,12 +248,12 @@ const PetCard = ({ info }) => {
               </div>
             </div>
             <div className="px-4 py-3 mt-12 text-gray-700">
-              <div className="flex flex-row items-center justify-between mb-1">
-                <h1 className="text-xl text-gray-700 font-semibold">
-                  Descripcion
-                </h1>
-                <p className="text-sm text-gray-600">{type}</p>
-              </div>
+              {/* <div className="flex flex-row items-center justify-between mb-1"> */}
+              <h1 className="text-xl text-gray-700 font-semibold">
+                Descripcion
+              </h1>
+              {/* <p className="text-sm text-gray-600">{type}</p> */}
+              {/* </div> */}
               <p className="text-base text-gray-600 break-all leading-tight">
                 {description}
               </p>
@@ -227,9 +266,9 @@ const PetCard = ({ info }) => {
             //   borderTopLeftRadius: "2.5rem",
             //   borderTopRightRadius: "2.5rem",
             // }}
-            className="flex flex-col justify-center text-gray-700 w-full pt-1 pb-3"
+            className="flex flex-col bg-gray-100 border-t-2 justify-center text-gray-700 w-full pt-1 pb-3"
           >
-            <div className="mx-4 border-b-2"></div>
+            {/* <div className="mx-4 border-b-2"></div> */}
             <div className="mt-2 mx-4 flex flex-col ml-6">
               <h1 className="text-xl text-gray-700 font-semibold -mb-1">
                 {ownerName}
@@ -246,7 +285,11 @@ const PetCard = ({ info }) => {
                 ojo
               </button>
               <button
-                onClick={() => window.open(`https://api.whatsapp.com/send?phone=54${phone}&text=Hola!%20soy%20${ownerName}%20y%20encontré%20a%20%20tu%20mascota`)}
+                onClick={() =>
+                  window.open(
+                    `https://api.whatsapp.com/send?phone=54${phone}&text=Hola%20${ownerName},%20encontré%20a%20%20tu%20mascota!`
+                  )
+                }
                 className="w-2/3 bg-red text-white font-bold py-2 px-4 rounded"
                 type="button"
               >

@@ -173,9 +173,9 @@ const Index = ({ userLocation, match }) => {
       {/* boton de mascotas tiene que ser fix */}
       <button
         onClick={openModal}
-        className="bg-white text-link font-bold py-2 px-4 rounded w-1/3 mx-2"
+        className="text-6xl leading-none fixed bottom-0 right-0 mb-3 mr-3 lg:mr-10 lg:mb-10"
       >
-        mapa
+        🗺
       </button>
 
       {missingPets.length > 0 ? (
