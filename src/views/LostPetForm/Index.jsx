@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Map from "../../components/Map";
 import Modal from "react-modal";
 import { Link, Redirect } from "react-router-dom";
+import moment from "moment";
 
 //Modal.setAppElement("#root");
 const Index = ({ match }) => {
@@ -9,6 +10,7 @@ const Index = ({ match }) => {
   const [pet, setPet] = useState(null);
   const [position, setPosition] = useState({});
   const [redirect, setRedirect] = useState(false);
+  const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
 
   const [form, setForm] = useState({
     date: null,
@@ -105,10 +107,12 @@ const Index = ({ match }) => {
     e.preventDefault();
     let dateError = form.formErrors.date;
     const { name, value } = e.target;
-    if (name === "date") {
+
+    if (moment(value).isAfter(today)) {
+      dateError = "Fecha invalida";
+    } else {
       dateError = value === null ? "Seleccione una fecha" : "";
     }
-
     let hour = new Date().getHours();
     let min = new Date().getMinutes();
     setForm((prevForm) => {
@@ -145,11 +149,10 @@ const Index = ({ match }) => {
     borderTopRightRadius: "1rem",
   };
 
- 
   const alertStyle = {
     color: "#306060",
   };
-  
+
   const modalStyle = {
     content: {
       position: "absolute",
@@ -209,7 +212,6 @@ const Index = ({ match }) => {
       <form
         noValidate
         onSubmit={handleSubmit}
-       
         className="bg-transparent border border-gray-500 shadow w-full rounded-xl px-8 pt-6 pb-8 mb-4"
       >
         <div className="flex justify-center mt-1 mb-8">
@@ -227,16 +229,16 @@ const Index = ({ match }) => {
             </label>
             <input
               noValidate
-              
               onChange={handleDateChange}
               className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="date"
+              max={today}
               type="date"
             ></input>
             {/* {form.date === null ? form.formErrors.date : ""} */}
-            {form.date === null && (
+            {/* {form.date === null && ( */}
               <span className="text-red-500">{form.formErrors.date}</span>
-            )}
+            {/* )} */}
           </div>
 
           <div className="w-full md:w-1/2 mb-6 px-3">
@@ -278,7 +280,6 @@ const Index = ({ match }) => {
 
         <div className="flex justify-center lg:justify-center">
           <button
-            
             className="w-1/2 bg-red text-white font-bold py-2 px-2 rounded shadow"
             type="submit"
           >
