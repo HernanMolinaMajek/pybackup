@@ -93,8 +93,8 @@ const NavBar = ({
     <nav className="flex flex-col items-start bg-orange shadow mb-6 lg:flex-row lg:justify-between lg:items-center lg:px-5 relative lg:w-full ">
       {/* {redirect && <Redirect to={"/missingPets"} />} */}
       <div className="flex flex-row w-full items-center p-5 justify-between lg:w-1/2 ">
-        <div onClick={toogleMenu} className="text-gray-600 lg:hidden">
-          <svg fill="#969696" viewBox="0 0 100 80" width="25" height="25">
+        <div onClick={toogleMenu} className="text-red-600 lg:hidden">
+          <svg fill="#ffffff" viewBox="0 0 100 80" width="25" height="25">
             <rect x="25" width="50" height="10" rx="8"></rect>
             <rect y="30" width="100" height="10" rx="8"></rect>
             <rect x="25" y="60" width="50" height="10" rx="8"></rect>

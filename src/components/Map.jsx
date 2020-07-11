@@ -28,7 +28,7 @@ const Map = ({ setMapPosition, circleOn }) => {
   });
   const [dot, setDot] = useState({});
   const [center, setCenter] = useState(Tucuman);
-
+  
   const onCLickHandle = (event) => {
     let position = {
       lat: event.latLng.lat(),
