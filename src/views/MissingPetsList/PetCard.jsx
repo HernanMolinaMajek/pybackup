@@ -150,8 +150,7 @@ const PetCard = ({ info }) => {
             </p>
 
             <p>
-              a <span className="font-semibold">{convertToKm(distance)}</span>
-              kilómetros
+              a <span className="font-semibold">{convertToKm(distance)}</span> kilómetros
             </p>
 
             <p>{howManydaysPassed(date)}</p>

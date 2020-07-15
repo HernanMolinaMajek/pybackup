@@ -38,7 +38,7 @@ const AdminPetCard = ({ info }) => {
           <div className="flex justify-between">
             <div className="w-1/3">
               <p className="text-sm text-gray-600">
-                {type} {breed}
+                {type} • {breed}
               </p>
 
               <p className="text-sm text-gray-600">{age} años de edad</p>

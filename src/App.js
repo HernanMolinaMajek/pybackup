@@ -13,6 +13,9 @@ import UserAdmin from "./views/userAdmin/Index";
 import PetAdmin from "./views/PetsAdmin/Index";
 import NewPetForm from "./views/NewPetForm/Index";
 import LostPetForm from "./views/LostPetForm/Index";
+import NotFound from "./components/NotFound"
+
+import { AnimatedRoutes, RouteTransition } from "./animation/RouteTransition";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -59,14 +62,6 @@ const App = () => {
     );
   };
 
-  // const getLoggedUser = (userId) => {
-  //   return fakeOwners.find((owner) => owner._id === userId);
-  // };
-
-  // const setOwnerInfo = (userId) => {
-  //   setUser(getLoggedUser(userId));
-  // };
-
   return (
     <div className="">
       <Router>
@@ -79,6 +74,35 @@ const App = () => {
 
         <div className="lg:px-32">
           <Switch>
+            {/* <AnimatedRoutes exitBeforeEnter initial={false}>
+            <RouteTransition exact path="/">
+              <Home setUserLocationInMap={setUserLocationInMap} />
+            </RouteTransition>
+            <RouteTransition path="/login">
+              <LoginForm logIn={logIn} />
+            </RouteTransition>
+            <RouteTransition path="/register">
+              <Register logIn={logIn} />
+            </RouteTransition>
+            <RouteTransition path="/petadmin">
+              <PetAdmin user={user} />
+            </RouteTransition>
+            <RouteTransition path="/lostPetForm/:id">
+              <LostPetForm />
+            </RouteTransition>
+
+            <RouteTransition exact path="/newPetForm">
+              <NewPetForm user={user} />
+            </RouteTransition>
+
+            <RouteTransition path="/newPetForm/:id">
+              <NewPetForm user={user} />
+            </RouteTransition>
+            
+            <RouteTransition path="/missingPets">
+              <MissingPets userLocation={userLocation} />
+            </RouteTransition>  */}
+
             <Route
               exact
               path="/"
@@ -121,6 +145,9 @@ const App = () => {
                 <MissingPets {...props} userLocation={userLocation} />
               )}
             />
+
+            <Route component={NotFound} />
+            {/* </AnimatedRoutes> */}
           </Switch>
         </div>
       </Router>

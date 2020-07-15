@@ -39,7 +39,6 @@ const Index = ({ match, user }) => {
     }
   }, []);
 
-  
   const getPet = async () => {
     const response = await fetch(
       `http://localhost:3030/api/pet/${match.params.id}`
@@ -49,8 +48,28 @@ const Index = ({ match, user }) => {
     return data[0];
   };
 
+  const updatePet = async () => {
+    try {
+      let resutl = await fetch(
+        `http://localhost:3030/api/pet/update/${form._id}`,
+        {
+          method: "put",
+          //mode: "no-cors",
+          headers: {
+            accept: "application/json",
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
+      console.log(resutl);
+      setRedirect(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const deletePet = async () => {
-    console.log("delete petts");
     try {
       let resutl = await fetch(`http://localhost:3030/api/pet/${form._id}`, {
         method: "delete",
@@ -182,7 +201,6 @@ const Index = ({ match, user }) => {
     return valid;
   };
 
- 
   return (
     <div className="flex justify-center items-center mx-3 mt-12 p-5">
       {redirect && <Redirect to="/petadmin" />}
@@ -382,7 +400,8 @@ const Index = ({ match, user }) => {
 
             <button
               className="w-1/2 bg-red text-white font-bold mx-4 py-2 px-4 rounded shadow"
-              type="submit"
+              type="button"
+              onClick={updatePet}
             >
               Guardar cambios
             </button>
@@ -393,7 +412,7 @@ const Index = ({ match, user }) => {
               className="w-1/2 bg-red text-white font-bold py-2 px-4 rounded shadow"
               type="submit"
             >
-              Bienvenido
+              Crear
             </button>
           </div>
         )}
