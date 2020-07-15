@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import fakePets from "../../fakePets.json";
-import PetCard from "../../components/AdminPetCard";
+import PetCard from "./AdminPetCard";
 import { Link } from "react-router-dom";
 import nothing from "./nothing2.png";
 
@@ -30,17 +29,7 @@ const Index = ({ user }) => {
 
     return data;
   };
-
-  // const getAndSetUserPets = (userId) => {
-  //   setUserPets(fakePets.filter((pet) => pet._ownerId === userId));
-  // };
-
-  const buttonStyle = {
-    backgroundColor: "#306060",
-
-    borderTopRightRadius: "1.5rem",
-    borderTopLeftRadius: "1.5rem",
-  };
+  
   const fondoStyle = {
     backgroundImage: `url(${nothing})`,
     width: "100%",
@@ -62,7 +51,10 @@ const Index = ({ user }) => {
         </div>
       )}
 
-      <Link to="/newPetForm" className="absolute sticky bottom-0 mb-12 right-0 z-10">
+      <Link
+        to="/newPetForm"
+        className="absolute sticky bottom-0 mb-12 right-0 z-10"
+      >
         <button
           className="text-6xl text-link bg-gray-100 px-3 pb-1 leading-none rounded-full shadow-md"
           type="submit"

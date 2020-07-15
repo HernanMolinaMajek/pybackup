@@ -17864,6 +17864,11 @@ video {
   transition-delay: 1000ms;
 }
 
+body {
+  background: rgb(244,202,54);
+  background: linear-gradient(0deg, rgba(244,202,54,0.039653361344537785) 0%, rgba(255,255,255,1) 100%);
+}
+
 .bg-orange {
   background-color: #f4ca36;
 }

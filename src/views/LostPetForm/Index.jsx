@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Map from "../../components/Map";
 import Modal from "react-modal";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import moment from "moment";
 
 //Modal.setAppElement("#root");
@@ -10,7 +10,7 @@ const Index = ({ match }) => {
   const [pet, setPet] = useState(null);
   const [position, setPosition] = useState({});
   const [redirect, setRedirect] = useState(false);
-  const [today, setToday] = useState(new Date().toISOString().split("T")[0]);
+  const [today] = useState(new Date().toISOString().split("T")[0]);
 
   const [form, setForm] = useState({
     date: null,
@@ -50,7 +50,7 @@ const Index = ({ match }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form.date);
+
     if (formValid(form)) {
       submit();
       setRedirect(true);
@@ -83,30 +83,15 @@ const Index = ({ match }) => {
         },
         body: JSON.stringify(data),
       });
-
-      console.log(result);
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleMapChange = (pos) => {
-    setPosition(pos);
-    if (position === null) form.formErrors.position = "Seleccione una posicion";
-    else {
-      setForm((prevForm) => {
-        let aux = Object.assign({}, prevForm);
-        aux.position = pos;
-        aux.formErrors.position = "";
-        return aux;
-      });
     }
   };
 
   const handleDateChange = (e) => {
     e.preventDefault();
     let dateError = form.formErrors.date;
-    const { name, value } = e.target;
+    const { value } = e.target;
 
     if (moment(value).isAfter(today)) {
       dateError = "Fecha invalida";
@@ -136,17 +121,6 @@ const Index = ({ match }) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
-
-  const buttonStyle = {
-    backgroundColor: "#306060",
-    borderRadius: "1rem",
-  };
-
-  const mapButtonStyle = {
-    backgroundColor: "#306060",
-
-    borderTopRightRadius: "1rem",
   };
 
   const alertStyle = {
@@ -190,10 +164,8 @@ const Index = ({ match }) => {
   const aceptMapPosition = () => {
     if (isEmpty(position)) {
       form.formErrors.position = "Seleccione una posicion";
-      console.log("position es empty");
     } else {
       setForm((prevForm) => {
-        console.log("position esta lleno");
         closeModal();
         let aux = Object.assign({}, prevForm);
         aux.position = position;
@@ -237,7 +209,7 @@ const Index = ({ match }) => {
             ></input>
             {/* {form.date === null ? form.formErrors.date : ""} */}
             {/* {form.date === null && ( */}
-              <span className="text-red-500">{form.formErrors.date}</span>
+            <span className="text-red-500">{form.formErrors.date}</span>
             {/* )} */}
           </div>
 

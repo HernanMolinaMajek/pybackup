@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, Redirect, withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, withRouter } from "react-router-dom";
 import Map from "./Map";
 import Modal from "react-modal";
 import logo from "./PerdidosYa_Logo_03.svg";
@@ -15,18 +15,8 @@ const NavBar = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [position, setPosition] = useState({});
 
-  // useEffect(() => {
-  //   setRedirect(false);
-  // }, []);
-
   const setMapPosition = (position) => {
     setPosition(position);
-  };
-
-  const mapButtonStyle = {
-    backgroundColor: "#306060",
-
-    borderTopRightRadius: "1rem",
   };
 
   function isEmpty(val) {
@@ -36,8 +26,6 @@ const NavBar = ({
   const openModal = () => {
     setMapPosition({});
     setIsMenuActive(false);
-    //setUserLocationInMap(position)
-
     setIsModalOpen(true);
   };
 
@@ -50,7 +38,6 @@ const NavBar = ({
     if (!isEmpty(position)) {
       setUserLocationInMap(position);
       setIsModalOpen(false);
-      // setRedirect(true);
       history.push("/missingPets");
     }
   };
@@ -203,13 +190,13 @@ const NavBar = ({
           )}
         </div>
       </div>
+
       <Modal
         onRequestClose={closeModal}
         isOpen={isModalOpen}
         style={isClientMobile() ? modalSmStyle : modalStyle}
       >
         <div className="flex flex-col realtive w-full h-full">
-         
           <Map setMapPosition={setMapPosition} circleOn={false} />
 
           <div className="bg-orange w-full h-20 z-40 absolute bottom-0">

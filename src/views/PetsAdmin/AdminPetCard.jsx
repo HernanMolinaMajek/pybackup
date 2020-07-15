@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const AdminPetCard = ({ info }) => {
-  const { _id, img, sex, description, age, breed, type, name, isLost } = info;
+  const { _id, img, description, age, breed, type, name, isLost } = info;
   const [isLostState, setIsLostState] = useState(isLost);
 
   const handlesubmit = async () => {
-    //esta api esta muy fea cambiar y ver como re renderizar al padre
     try {
       let result = await fetch(`http://localhost:3030/api/pet/${_id}`, {
         method: "PATCH",
@@ -16,7 +15,6 @@ const AdminPetCard = ({ info }) => {
         },
       });
 
-      console.log(result);
       setIsLostState(false);
     } catch (error) {
       console.log(error);
@@ -25,7 +23,7 @@ const AdminPetCard = ({ info }) => {
 
   return (
     <div className="flex w-full h-40 lg:h-48 mb-4 px-4">
-      <img src={img} className="w-1/3 object-cover rounded-l-lg shadow-lg" />
+      <img src={img} alt="" className="w-1/3 object-cover rounded-l-lg shadow-lg" />
       <div className="flex flex-col w-2/3 rounded-r-lg overflow-hidden shadow-lg">
         <div className="bg-gray-100 h-full w-full p-2">
           <div className="flex items-center mb-1">
@@ -43,7 +41,9 @@ const AdminPetCard = ({ info }) => {
 
               <p className="text-sm text-gray-600">{age} años de edad</p>
             </div>
-            <p className="w-2/3 truncate break-all overflow-hidden text-sm text-gray-600" >{description}</p>
+            <p className="w-2/3 truncate break-all overflow-hidden text-sm text-gray-600">
+              {description}
+            </p>
           </div>
         </div>
 

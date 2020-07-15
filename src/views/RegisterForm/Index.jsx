@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+
 const Index = ({ logIn }) => {
   const [redirect, setRedirect] = useState(false);
+  const [userAlreadyExistError, setUserAlreadyExistError] = useState("");
   const [formErrors, setFormErrors] = useState({
     name: "",
     phone: "",
@@ -32,21 +34,6 @@ const Index = ({ logIn }) => {
     return valid;
   };
 
-  const buttonStyle = {
-    backgroundColor: "#306060",
-    borderRadius: "1rem",
-  };
-  const formStyle = {
-    backgroundColor: "#F6F6F6",
-    borderRadius: "2.5rem",
-  };
-  const alertStyle = {
-    color: "#306060",
-  };
-  const inputStyle = {
-    borderRadius: "1rem",
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -56,7 +43,9 @@ const Index = ({ logIn }) => {
           logIn(data.Owner);
           setRedirect(true);
         } else {
-          console.log("usuerio ya existe");
+          setUserAlreadyExistError(
+            "Este usuario ya existe, por favor introduzca otro Email"
+          );
         }
       });
     } else {
@@ -143,7 +132,6 @@ const Index = ({ logIn }) => {
       return data;
     } catch (error) {
       return error;
-      console.log(error);
     }
   };
 
@@ -155,6 +143,11 @@ const Index = ({ logIn }) => {
         // style={formStyle}
         className="bg-transparent border border-gray-500 shadow lg:w-1/2 rounded-xl px-8 pt-6 pb-8 mb-4"
       >
+        {userAlreadyExistError.length > 0 && (
+          <p className="text-center rounded-sm bg-red-200 mb-5 py-2 px-3 border border-red-400 text-red-700">
+            {userAlreadyExistError}
+          </p>
+        )}
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6">
             <label

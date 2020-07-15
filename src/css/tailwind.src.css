@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .bg-orange {
   background-color: #f4ca36;
 }

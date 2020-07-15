@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import modal from "react-modal";
 import { Redirect } from "react-router-dom";
+
 const Index = ({ match, user }) => {
   const isEditig = Object.entries(match.params).length === 0 ? false : true;
   const method = isEditig ? "PUT" : "POST";
@@ -26,6 +26,15 @@ const Index = ({ match, user }) => {
     isLost: false,
   });
 
+  const getPet = async () => {
+    const response = await fetch(
+      `http://localhost:3030/api/pet/${match.params.id}`
+    );
+    const data = await response.json();
+
+    return data[0];
+  };
+
   useEffect(() => {
     if (isEditig) {
       getPet().then((pet) => {
@@ -38,15 +47,6 @@ const Index = ({ match, user }) => {
       });
     }
   }, []);
-
-  const getPet = async () => {
-    const response = await fetch(
-      `http://localhost:3030/api/pet/${match.params.id}`
-    );
-    const data = await response.json();
-    console.log("gett petts");
-    return data[0];
-  };
 
   const updatePet = async () => {
     try {
@@ -62,7 +62,7 @@ const Index = ({ match, user }) => {
           body: JSON.stringify(form),
         }
       );
-      console.log(resutl);
+
       setRedirect(true);
     } catch (error) {
       console.log(error);
@@ -80,7 +80,7 @@ const Index = ({ match, user }) => {
         },
         //body: JSON.stringify(form),
       });
-      console.log(resutl);
+
       setRedirect(true);
     } catch (error) {
       console.log(error);
@@ -91,8 +91,6 @@ const Index = ({ match, user }) => {
     const formData = new FormData();
     for (const prop in form) {
       formData.append(prop, form[prop]);
-      console.log("prop", prop);
-      console.log("form[prop]", form[prop]);
     }
     formData.append("img", imgState);
 
@@ -106,7 +104,6 @@ const Index = ({ match, user }) => {
         },
         body: formData, //JSON.stringify(form),
       });
-      console.log(resutl);
     } catch (error) {
       console.log(error);
     }
@@ -143,6 +140,9 @@ const Index = ({ match, user }) => {
       }
       case "img": {
         errors.img = value.length > 0 ? "" : "Debe subir una imagen";
+        break;
+      }
+      default: {
         break;
       }
     }
@@ -379,15 +379,6 @@ const Index = ({ match, user }) => {
           </div>
         </div>
 
-        {/* <div className="flex justify-center lg:justify-center">
-          <button
-            
-            className="w-1/2 bg-red text-white font-bold py-2 px-4 rounded shadow"
-            type="submit"
-          >
-            Bienvenido
-          </button>
-        </div> */}
         {isEditig ? (
           <div className="flex justify-center lg:justify-center">
             <button

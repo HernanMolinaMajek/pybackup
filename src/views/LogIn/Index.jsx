@@ -3,9 +3,11 @@ import { Redirect } from "react-router-dom";
 
 const Index = ({ logIn }) => {
   const [redirect, setRedirect] = useState(false);
+  const [userNotFoundError, setUserNotFoundError] = useState("");
   const [formErrors, setFormErrors] = useState({
     email: "",
     password: "",
+    userNotFound: "",
   });
   const [form, setForm] = useState({
     email: "",
@@ -38,7 +40,9 @@ const Index = ({ logIn }) => {
           logIn(data);
           setRedirect(true);
         } else {
-          console.log("usuerio no encontrado");
+          setUserNotFoundError(
+            "Usuario no encontrado, Por favor revise su correo y contraseña"
+          );
         }
       });
     } else {
@@ -106,7 +110,6 @@ const Index = ({ logIn }) => {
       //   logIn(data);
       return data;
     } catch (error) {
-      console.log(error);
       return error;
     }
   };
@@ -119,10 +122,16 @@ const Index = ({ logIn }) => {
         //style={formStyle}
         className="w-full max-w-lg bg-gray-200 shadow-md px-8 pt-6 pb-8 "
       > */}
-        <form 
+      <form
         noValidate
         onSubmit={handleSubmit}
-        className="bg-transparent border border-gray-500 shadow lg:w-1/2 rounded-xl px-8 pt-6 pb-8 mb-4">
+        className="bg-transparent border border-gray-500 shadow lg:w-1/2 rounded-xl px-8 pt-6 pb-8 mb-4"
+      >
+        {userNotFoundError.length > 0 && (
+          <p className="text-center rounded-sm bg-red-200 mb-5 py-2 px-3 border border-red-400 text-red-700">
+            {userNotFoundError}
+          </p>
+        )}
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full px-3 mb-6 md:mb-0">
             <label
@@ -154,7 +163,6 @@ const Index = ({ logIn }) => {
 
             <input
               noValidate
-              
               onChange={onHandleChange}
               className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none "
               name="password"

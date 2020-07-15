@@ -1,36 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRouting";
-
-import fakeOwners from "./fakeOwners.json";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
 import Home from "./views/Home/Index";
 import MissingPets from "./views/MissingPetsList/Index";
 import Register from "./views/RegisterForm/Index";
 import LoginForm from "./views/LogIn/Index";
-import UserAdmin from "./views/userAdmin/Index";
 import PetAdmin from "./views/PetsAdmin/Index";
 import NewPetForm from "./views/NewPetForm/Index";
 import LostPetForm from "./views/LostPetForm/Index";
-import NotFound from "./components/NotFound"
+import NotFound from "./components/NotFound";
 
-import { AnimatedRoutes, RouteTransition } from "./animation/RouteTransition";
+//import { AnimatedRoutes, RouteTransition } from "./animation/RouteTransition";
 
 const App = () => {
   const [user, setUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userLocation, setUserLocation] = useState({});
 
-  // useEffect(() => {
-  //   //logIn("5eec80512b936e1d570669dd");
-  //   //setUserLocation({ lat: -26.8283728, lng: -65.2224645 });
-  // }, []);
-
   useEffect(() => {
-    //setUser(JSON.parse(localStorage.getItem('user')))
     let loggedUser = JSON.parse(localStorage.getItem("user"));
-
     if (loggedUser !== null) {
       setUser(loggedUser);
       setIsAuthenticated(true);
@@ -39,7 +28,6 @@ const App = () => {
 
   const setUserLocationInMap = (position) => {
     localStorage.setItem("userLocation", JSON.stringify(userLocation));
-
     setUserLocation(position);
   };
 
@@ -63,7 +51,7 @@ const App = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <Router>
         <NavBar
           userName={user.name}

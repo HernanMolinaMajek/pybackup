@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import personIcon from "./person.png";
 import petIcon from "./pet.png";
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  Circle,
-} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
@@ -27,8 +22,18 @@ const Map = ({ user, pets }) => {
     googleMapsApiKey: "AIzaSyDtAaoe-ahjqCGCMM7kMZ9qxDryQ2b2GHQ",
   });
 
-  if (loadError) return "Error loading maps";
-  if (!isLoaded) return "Loading map";
+  if (loadError)
+    return (
+      <h1 className="flex h-full justify-center text-2xl items-center text-red-400 font-bold">
+        Error al cargar el mapa
+      </h1>
+    );
+  if (!isLoaded)
+    return (
+      <h1 className="flex h-full justify-center text-2xl items-center text-red-400 font-bold">
+        Cargando!
+      </h1>
+    );
   else
     return (
       <GoogleMap

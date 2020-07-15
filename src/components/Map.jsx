@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import personIcon from "./person.png";
 import petIcon from "./pet.png";
 import {
@@ -28,7 +28,7 @@ const Map = ({ setMapPosition, circleOn }) => {
   });
   const [dot, setDot] = useState({});
   const [center, setCenter] = useState(Tucuman);
-  
+
   const onCLickHandle = (event) => {
     let position = {
       lat: event.latLng.lat(),
@@ -40,8 +40,18 @@ const Map = ({ setMapPosition, circleOn }) => {
     //setCenter(position)
   };
 
-  if (loadError) return "Error loading maps";
-  if (!isLoaded) return "Loading map";
+  if (loadError)
+    return (
+      <h1 className="flex h-full justify-center text-2xl items-center text-red-400 font-bold">
+        Error al cargar el mapa
+      </h1>
+    );
+  if (!isLoaded)
+    return (
+      <h1 className="flex h-full justify-center text-2xl items-center text-red-400 font-bold">
+        Cargando!
+      </h1>
+    );
   else
     return (
       <GoogleMap

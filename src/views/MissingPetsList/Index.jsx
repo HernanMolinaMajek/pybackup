@@ -13,13 +13,10 @@ const Index = ({ userLocation, match }) => {
     let loggedUserLocation = JSON.parse(localStorage.getItem("userLocation"));
     if (loggedUserLocation === null) loggedUserLocation = {};
 
-    console.log(userLocation);
     if (Object.entries(userLocation).length !== 0) {
       orderAndSetMisingPetList();
-      console.log("entre por user location");
     } else if (Object.entries(loggedUserLocation).length !== 0) {
       orderAndSetMisingPetList();
-      console.log("entre por storage");
     }
   }, []);
 
@@ -49,7 +46,7 @@ const Index = ({ userLocation, match }) => {
       });
 
       let orderedList = pe.sort((a, b) => (a.distance > b.distance ? 1 : -1));
-      console.log(pets);
+
       setMissingPets(orderedList);
     });
   };
@@ -57,60 +54,10 @@ const Index = ({ userLocation, match }) => {
   const getMissingPets = async () => {
     const response = await fetch("http://localhost:3030/api/lost");
     const data = await response.json();
-    //console.log(data.Lost);
+
     return data.Lost;
   };
 
-  // const orderListOfPets = () => {
-  //   let orderedList = missingPets.sort((a, b) => a.distance > b.distance ? 1 : -1);
-
-  //   setMissingPets(orderedList);
-  // };
-
-  // const algo = () => {
-
-  //   setPets()
-
-  //   orderListOfPets()
-  // };
-
-  // const setPets = () => {
-  //   // let ListOfLossesPetsId2 = LossesPets.map((lp) => {
-  //   //   return { _petId: lp._petId, date: lp.date, location: lp.location };
-  //   // });
-
-  //   let ListOfLossesPetsData2 = LossesPets.map((pet) => {
-  //     let petInfo = Pets.find((p) => p._id === pet._petId);
-  //     let ownerInfo = Owners.find((o) => o._id === pet._ownerId);
-
-  //     if (petInfo && ownerInfo) {
-  //       pet["_id"] = petInfo._id;
-  //       pet["name"] = petInfo.name;
-  //       pet["img"] = petInfo.img;
-  //       pet["sex"] = petInfo.sex;
-  //       pet["age"] = petInfo.age;
-  //       pet["type"] = petInfo.type;
-  //       pet["breed"] = petInfo.breed;
-  //       pet["description"] = petInfo.description;
-  //       pet["distance"] = getDistance(userLocation, pet.location);
-
-  //       pet["ownerName"] = ownerInfo.name;
-  //       pet["phone"] = ownerInfo.phone;
-  //       pet["email"] = ownerInfo.email;
-  //     }
-
-  //     return pet;
-  //   });
-  //   // let ListOfLossesPetsId = LossesPets.map((lp) => lp._petId);
-  //   // let LstOfLossesPetsData = Pets.filter((pet) =>
-  //   //   ListOfLossesPetsId.includes(pet._id)
-  //   // );
-  //   let orderedList = ListOfLossesPetsData2.sort((a, b) =>
-  //     a.distance > b.distance ? 1 : -1
-  //   );
-
-  //   setMissingPets(orderedList);
-  // };
   const fondoStyle = {
     backgroundImage: `url(${nothing})`,
     width: "100%",
@@ -144,33 +91,6 @@ const Index = ({ userLocation, match }) => {
   };
   return (
     <div className="mx-6">
-      {/* <div className="w-full">
-        <div className="relative">
-          <select
-            style={{ borderRadius: "1rem" }}
-            className="block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-state"
-          >
-            <option>Todos</option>
-            <option>Perro</option>
-            <option>Gato</option>
-            <option>Otros</option>
-          </select>
-
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <svg
-              className="fill-current h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-            </svg>
-          </div>
-        </div>
-      </div> */}
-
-
-      {/* boton de mascotas tiene que ser fix */}
       <button
         onClick={openModal}
         className="text-6xl leading-none fixed bottom-0 right-0 mb-3 mr-3 lg:mr-10 lg:mb-10"
@@ -206,14 +126,6 @@ const Index = ({ userLocation, match }) => {
               </button>
             </div>
           </div>
-          {/* <button
-            onClick={aceptMapPosition}
-            style={mapButtonStyle}
-            className="w-40 absolute z-40 bottom-0 hover:bg-blue-700 text-white font-medium py-3 focus:outline-none focus:shadow-outline"
-            type="button"
-          >
-            Aceptar
-          </button> */}
         </div>
       </Modal>
     </div>
