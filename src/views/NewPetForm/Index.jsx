@@ -386,7 +386,7 @@ const Index = ({ match, user }) => {
               onClick={deletePet}
               type="button"
             >
-              Eliminar Mascota
+              Eliminar
             </button>
 
             <button
@@ -394,7 +394,7 @@ const Index = ({ match, user }) => {
               type="button"
               onClick={updatePet}
             >
-              Guardar cambios
+              Actualizar
             </button>
           </div>
         ) : (

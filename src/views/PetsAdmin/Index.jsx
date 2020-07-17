@@ -29,7 +29,7 @@ const Index = ({ user }) => {
 
     return data;
   };
-  
+
   const fondoStyle = {
     backgroundImage: `url(${nothing})`,
     width: "100%",
@@ -40,7 +40,24 @@ const Index = ({ user }) => {
   };
 
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col items-center">
+      {/* <Link
+        to="/newPetForm"
+        className="text-6xl leading-none fixed bottom-0 right-0 mb-3 mr-3 lg:mr-10 lg:mb-10"
+      >
+        <button className="text-gray-600 border-none hover:text-red-500">
+          +
+        </button>
+      </Link> */}
+      <Link
+        to="/newPetForm"
+        className="ml-5 mb-5"
+      >
+        <button className="bg-transparent text-link font-semibold  py-2 px-4 border border-red-500 rounded">
+          Nueva mascota
+        </button>
+      </Link>
+
       {userPets.length > 0 ? (
         userPets.map((pet) => <PetCard key={pet._id} info={pet} />)
       ) : (
@@ -50,18 +67,6 @@ const Index = ({ user }) => {
           </h1>
         </div>
       )}
-
-      <Link
-        to="/newPetForm"
-        className="absolute sticky bottom-0 mb-12 right-0 z-10"
-      >
-        <button
-          className="text-6xl text-link bg-gray-100 px-3 pb-1 leading-none rounded-full shadow-md"
-          type="submit"
-        >
-          +
-        </button>
-      </Link>
     </div>
   );
 };

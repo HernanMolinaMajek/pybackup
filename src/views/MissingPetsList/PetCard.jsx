@@ -86,7 +86,7 @@ const PetCard = ({ info }) => {
             </div>
 
             <p>
-              {breed} • {age} años
+              {breed} • {age} {age === 1 ? "año" : "años"}
             </p>
 
             <p>
@@ -192,7 +192,9 @@ const PetCard = ({ info }) => {
                   <p className="text-sm text-gray-600">
                     {type} • {breed}
                   </p>
-                  <p className="text-sm text-gray-600">{age} años de edad</p>
+                  <p className="text-sm text-gray-600">
+                    {age} {age === 1 ? "año" : "años"} de edad
+                  </p>
                 </div>
                 <div className="flex justify-between text-sm text-gray-600">
                   <p className="">
@@ -202,54 +204,42 @@ const PetCard = ({ info }) => {
                     </span>{" "}
                     kilometros
                   </p>
-                  <p>perdido {howManydaysPassed(date)}</p>
+                  <p>
+                    perdido{" "}
+                    <span className="font-semibold">
+                      {howManydaysPassed(date)}
+                    </span>
+                  </p>
                 </div>
               </div>
             </div>
             <div className="px-4 py-3 mt-12 text-gray-700">
-              {/* <div className="flex flex-row items-center justify-between mb-1"> */}
               <h1 className="text-xl text-gray-700 font-semibold">
-                Descripcion
+                Descripción
               </h1>
-              {/* <p className="text-sm text-gray-600">{type}</p> */}
-              {/* </div> */}
+
               <p className="text-base text-gray-600 break-all leading-tight">
                 {description}
               </p>
             </div>
           </div>
 
-          <div
-            // style={{
-            //   backgroundColor: "#F6F6F6",
-            //   borderTopLeftRadius: "2.5rem",
-            //   borderTopRightRadius: "2.5rem",
-            // }}
-            className="flex flex-col bg-gray-100 border-t-2 justify-center text-gray-700 w-full pt-1 pb-3"
-          >
-            {/* <div className="mx-4 border-b-2"></div> */}
-            <div className="mt-2 mx-4 flex flex-col ml-6">
-              <h1 className="text-xl text-gray-700 font-semibold -mb-1">
-                {ownerName}
-              </h1>
-              <p className="text-xs text-gray-600">Dueño</p>
-            </div>
-            <div className="mt-2 mx-4 flex flex-row items-center justify-between">
-              {/* <button
-                onClick={openMapModal}
-                style={buttonStyle}
-                className="w-1/3 hover:bg-blue-700 text-gray-100 text-lg font-medium py-3  mr-5 shadow-lg focus:outline-none focus:shadow-outline"
-                type="button"
-              >
-                ojo
-              </button> */}
+          <div className="flex flex-col bg-gray-100 border-t-2 justify-center text-gray-700 w-full pt-1 pb-3">
+            <div className="flex justify-between ">
+              <div className="mt-2 mx-4 flex flex-col ml-6">
+                <h1 className="text-xl text-gray-700 font-semibold -mb-1">
+                  {ownerName}
+                </h1>
+                <p className="text-xs text-gray-600">Dueño</p>
+              </div>
+
               <button
                 onClick={() =>
                   window.open(
                     `https://api.whatsapp.com/send?phone=54${phone}&text=Hola%20${ownerName},%20encontré%20a%20%20tu%20mascota!`
                   )
                 }
-                className="w-2/3 bg-red text-white font-bold py-2 px-4 rounded"
+                className="bg-red mt-2 mx-4 w-1/3 text-white font-bold py-2 px-4 rounded"
                 type="button"
               >
                 {phone}

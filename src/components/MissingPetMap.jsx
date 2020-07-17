@@ -10,6 +10,7 @@ const containerStyle = {
 
 const options = {
   disableDefaultUI: true,
+  gestureHandling: "greedy"
 };
 
 const Tucuman = {

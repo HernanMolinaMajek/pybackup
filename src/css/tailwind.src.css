@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .bg-orange {
   background-color: #f4ca36;
 }
@@ -23,6 +22,9 @@
 }
 .w-70 {
   width: 20rem;
+}
+.h-53 {
+  height: 13rem;
 }
 .rounded-xl {
   border-radius: 1rem;

@@ -93,7 +93,7 @@ const Index = ({ userLocation, match }) => {
     <div className="mx-6">
       <button
         onClick={openModal}
-        className="text-6xl leading-none fixed bottom-0 right-0 mb-3 mr-3 lg:mr-10 lg:mb-10"
+        className="text-5xl leading-none fixed bottom-0 right-0 mb-3 mr-3 lg:mr-10 lg:mb-10"
       >
         🗺
       </button>
