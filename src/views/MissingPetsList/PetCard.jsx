@@ -39,6 +39,10 @@ const PetCard = ({ info }) => {
     },
   };
 
+  const breedShortener = (breed) => {
+    return breed.length > 10 ? `${breed.substring(0, 10)}...` : breed;
+  };
+
   const isClientMobile = () => {
     if (window.matchMedia("(max-width: 640px)").matches) {
       return true;
@@ -86,7 +90,7 @@ const PetCard = ({ info }) => {
             </div>
 
             <p>
-              {breed} • {age} {age === 1 ? "año" : "años"}
+              {breedShortener(breed)} • {age} {age === 1 ? "año" : "años"}
             </p>
 
             <p>

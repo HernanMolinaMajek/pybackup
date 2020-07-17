@@ -204,7 +204,7 @@ const Index = ({ logIn }) => {
               className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="email"
               type="email"
-              maxLength="20"
+              maxLength="30"
             ></input>
             {formErrors.email.length > 0 && (
               <span className="text-red-500">{formErrors.email}</span>

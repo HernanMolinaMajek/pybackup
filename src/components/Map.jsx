@@ -15,7 +15,7 @@ const containerStyle = {
 
 const options = {
   disableDefaultUI: true,
-  gestureHandling: "greedy"
+  gestureHandling: "greedy",
 };
 
 const Tucuman = {
@@ -37,8 +37,8 @@ const Map = ({ setMapPosition, circleOn }) => {
     };
 
     setDot(position);
+    setCenter(position)
     setMapPosition(position);
-    //setCenter(position)
   };
 
   if (loadError)
@@ -58,15 +58,16 @@ const Map = ({ setMapPosition, circleOn }) => {
       <GoogleMap
         mapContainerStyle={containerStyle}
         options={options}
-        center={center}
+        //center={center}
+        center={{ lat: parseFloat(center.lat), lng: parseFloat(center.lng) }}
         zoom={14}
         onClick={(event) => {
-          //setDot({lat:event.latLng.lat(),lng:event.latLng.lng()})
           onCLickHandle(event);
         }}
       >
         <Marker
-          position={dot}
+          //position={dot}
+          position={{ lat: parseFloat(dot.lat), lng: parseFloat(dot.lng) }}
           icon={{
             url: circleOn ? petIcon : personIcon,
             scaledSize: new window.google.maps.Size(30, 30),
@@ -76,7 +77,7 @@ const Map = ({ setMapPosition, circleOn }) => {
         />
         {circleOn ? (
           <Circle
-            center={dot}
+            center={{ lat: parseFloat(dot.lat), lng: parseFloat(dot.lng) }}
             radius={300}
             options={{
               fillColor: "#ff5656",

@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { getDistance } from "geolib";
-import nothing from "./nothing2.png";
-import PetCard from "./PetCard";
 import Modal from "react-modal";
 import Map from "../../components/MissingPetMap";
+import PetCard from "./PetCard";
+import noPositionImg from "./noPosition.png";
+import nothingImg from "./nothing2.png";
 
 const Index = ({ userLocation, match }) => {
   const [missingPets, setMissingPets] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    let loggedUserLocation = JSON.parse(localStorage.getItem("userLocation"));
-    if (loggedUserLocation === null) loggedUserLocation = {};
-
-    if (Object.entries(userLocation).length !== 0) {
-      orderAndSetMisingPetList();
-    } else if (Object.entries(loggedUserLocation).length !== 0) {
-      orderAndSetMisingPetList();
-    }
+    orderAndSetMisingPetList();
   }, []);
 
   const openModal = () => {
@@ -58,14 +52,24 @@ const Index = ({ userLocation, match }) => {
     return data.Lost;
   };
 
-  const fondoStyle = {
-    backgroundImage: `url(${nothing})`,
+  const noPetImgStyle = {
+    backgroundImage: `url(${nothingImg})`,
     width: "100%",
     height: "100vh",
     backgroundPosition: "center",
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
   };
+
+  const noPositionImgStyle = {
+    backgroundImage: `url(${noPositionImg})`,
+    width: "100%",
+    height: "100vh",
+    backgroundPosition: "center",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+  };
+
   const modalStyle = {
     content: {
       position: "absolute",
@@ -91,19 +95,29 @@ const Index = ({ userLocation, match }) => {
   };
   return (
     <div className="mx-6">
-      <button
-        onClick={openModal}
-        className="text-5xl leading-none fixed bottom-0 right-0 mb-3 mr-3 lg:mr-10 lg:mb-10"
-      >
-        🗺
-      </button>
+      {Object.entries(userLocation).length !== 0 && missingPets.length > 0 ? (
+        <button
+          onClick={openModal}
+          className="text-5xl leading-none fixed bottom-0 right-0 mb-3 mr-3 lg:mr-10 lg:mb-10"
+        >
+          🗺
+        </button>
+      ) : null}
 
-      {missingPets.length > 0 ? (
-        missingPets.map((pet) => <PetCard key={pet._id} info={pet} />)
+      {Object.entries(userLocation).length !== 0 ? (
+        missingPets.length > 0 ? (
+          missingPets.map((pet) => <PetCard key={pet._id} info={pet} />)
+        ) : (
+          <div style={noPetImgStyle}>
+            <h1 className="px-4 text-3xl lg:px-0 text-center font-medium text-gray-800 leading-none lg:text-left lg:text-6xl ">
+              No hay mascotas perdidas!
+            </h1>
+          </div>
+        )
       ) : (
-        <div style={fondoStyle} className="">
+        <div style={noPositionImgStyle}>
           <h1 className="px-4 text-3xl lg:px-0 text-center font-medium text-gray-800 leading-none lg:text-left lg:text-6xl ">
-            No hay mascotas perdidas!
+            Por favor seleccione una posición
           </h1>
         </div>
       )}

@@ -109,6 +109,8 @@ const Index = ({ match, user }) => {
     }
   };
 
+  const ageReg = RegExp(/^[1-9][0-9]*$/);
+
   const onHandleChange = (e) => {
     e.preventDefault();
     const { name, value, files } = e.target;
@@ -135,7 +137,8 @@ const Index = ({ match, user }) => {
         break;
       }
       case "age": {
-        errors.age = value.length > 0 ? "" : "La edad no puede estar vacia";
+        //errors.age = value.length > 0 ? "" : "La edad no puede estar vacia";
+        errors.age = ageReg.test(value) ? "" : "Debe ser una edad valida";
         break;
       }
       case "img": {
@@ -194,9 +197,12 @@ const Index = ({ match, user }) => {
       val === "" && (valid = false);
     });
 
-    Object.values(imgState).forEach((val) => {
-      val === "" && (valid = false);
-    });
+    // Object.values(imgState).forEach((val) => {
+    //   val === "" && (valid = false);
+    // });
+    if (imgState.name === undefined) {
+      valid = false;
+    }
 
     return valid;
   };
@@ -304,7 +310,7 @@ const Index = ({ match, user }) => {
               Raza
             </label>
             <input
-              maxLength="15"
+              maxLength="28"
               onChange={onHandleChange}
               value={form.breed}
               noValidate
@@ -330,6 +336,8 @@ const Index = ({ match, user }) => {
               value={form.age}
               className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="age"
+              min="1"
+              max="150"
               type="number"
             />
             {formErrors.age.length > 0 && (

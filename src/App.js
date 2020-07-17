@@ -27,8 +27,9 @@ const App = () => {
   }, []);
 
   const setUserLocationInMap = (position) => {
-    localStorage.setItem("userLocation", JSON.stringify(userLocation));
     setUserLocation(position);
+    //console.log("puse en el storage esto",userLocation)
+    //localStorage.setItem("lastUserLocation", JSON.stringify(userLocation));
   };
 
   const logOut = () => {
@@ -59,9 +60,51 @@ const App = () => {
           setUserLocationInMap={setUserLocationInMap}
           logOut={logOut}
         />
-
         <div className="lg:px-32">
           <Switch>
+            <Route exact path="/" component={Home} />
+
+            <Route
+              path="/login"
+              render={(props) => <LoginForm {...props} logIn={logIn} />}
+            />
+
+            <Route
+              path="/register"
+              render={(props) => <Register {...props} logIn={logIn} />}
+            />
+
+            <Route
+              path="/petadmin"
+              render={(props) => <PetAdmin {...props} key={String(props)} user={user} />}
+            />
+
+            <Route path="/lostPetForm/:id" component={LostPetForm} />
+
+            <Route
+              exact
+              path="/newPetForm"
+              render={(props) => <NewPetForm {...props} user={user} />}
+            />
+
+            <Route
+              path="/newPetForm/:id"
+              render={(props) => <NewPetForm {...props} user={user} />}
+            />
+
+            <Route
+              path="/missingPets"
+              render={(props) => (
+                <MissingPets
+                  {...props}
+                  key={String(userLocation.lat)}
+                  userLocation={userLocation}
+                />
+              )}
+            />
+
+            <Route component={NotFound} />
+
             {/* <AnimatedRoutes exitBeforeEnter initial={false}>
             <RouteTransition exact path="/">
               <Home setUserLocationInMap={setUserLocationInMap} />
@@ -89,104 +132,12 @@ const App = () => {
             
             <RouteTransition path="/missingPets">
               <MissingPets userLocation={userLocation} />
-            </RouteTransition>  */}
+            </RouteTransition>  
 
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <Home {...props} setUserLocationInMap={setUserLocationInMap} />
-              )}
-            />
-
-            <Route
-              path="/login"
-              render={(props) => <LoginForm {...props} logIn={logIn} />}
-            />
-
-            <Route
-              path="/register"
-              render={(props) => <Register {...props} logIn={logIn} />}
-            />
-
-            <Route
-              path="/petadmin"
-              render={(props) => <PetAdmin {...props} user={user} />}
-            />
-
-            <Route path="/lostPetForm/:id" component={LostPetForm} />
-
-            <Route
-              exact
-              path="/newPetForm"
-              render={(props) => <NewPetForm {...props} user={user} />}
-            />
-
-            <Route
-              path="/newPetForm/:id"
-              render={(props) => <NewPetForm {...props} user={user} />}
-            />
-
-            <Route
-              path="/missingPets"
-              render={(props) => (
-                <MissingPets {...props} userLocation={userLocation} />
-              )}
-            />
-
-            <Route component={NotFound} />
-            {/* </AnimatedRoutes> */}
+           </AnimatedRoutes> */}
           </Switch>
         </div>
       </Router>
-
-      {/* <Router>
-        <NavBar
-          userName={user.name}
-          authenticated={isAuthenticated}
-          logOut={logOut}
-        />
-
-        <Switch>
-          <Route exact path="/">
-            <Home setUserLocationInMap={setUserLocationInMap} />
-            
-          </Route>
-
-          <Route exact path="/a">
-            <LostPetForm />
-          </Route>
-
-          <Route exact path="/register">
-            <Register />
-          </Route>
-
-          <Route exact path="/login">
-            <LogIn />
-          </Route>
-
-          <PrivateRoute authenticated={isAuthenticated} path="/userAdmin">
-            <UserAdmin user={user} />
-          </PrivateRoute>
-
-          <PrivateRoute authenticated={isAuthenticated} path="/petAdmin">
-            <PetAdmin user={user} />
-          </PrivateRoute>
-
-          <PrivateRoute authenticated={isAuthenticated} path="/lostPetForm">
-            <LostPetForm />
-          </PrivateRoute>
-
-
-          <PrivateRoute authenticated={isAuthenticated} path="/newPetForm">
-            <New user={user}  />
-          </PrivateRoute>
-
-          <Route path="/missingPets">
-            <List userLocation={userLocation} />
-          </Route>
-        </Switch>
-      </Router> */}
     </div>
   );
 };
