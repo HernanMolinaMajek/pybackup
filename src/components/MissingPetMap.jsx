@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import personIcon from "./person.png";
 import petIcon from "./pet.png";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
@@ -10,7 +15,7 @@ const containerStyle = {
 
 const options = {
   disableDefaultUI: true,
-  gestureHandling: "greedy"
+  gestureHandling: "greedy",
 };
 
 const Tucuman = {
@@ -22,6 +27,23 @@ const Map = ({ user, pets }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyDtAaoe-ahjqCGCMM7kMZ9qxDryQ2b2GHQ",
   });
+  const [selectedPet, setSelectedPet] = useState(null);
+
+  // useEffect(() => {
+  //   const listener = (e) => {
+  //     if (e.key === "Escape") {
+  //       setSelectedPet(null);
+  //     }
+  //   };
+  //   window.addEventListener("keydown", listener);
+  //   return () => {
+  //     window.removeEventListener("keydown", listener);
+  //   };
+  // }, []);
+
+  const convertToKm = (m) => {
+    return (m / 1000).toFixed(2);
+  };
 
   if (loadError)
     return (
@@ -55,6 +77,9 @@ const Map = ({ user, pets }) => {
 
         {pets.map((pet) => (
           <Marker
+            onClick={() => {
+              setSelectedPet(pet);
+            }}
             key={pet._id}
             position={{
               lat: parseFloat(pet.location.lat),
@@ -68,6 +93,35 @@ const Map = ({ user, pets }) => {
             }}
           />
         ))}
+
+        {selectedPet && (
+          <InfoWindow
+            onCloseClick={() => {
+              setSelectedPet(null);
+            }}
+            position={{
+              lat: parseFloat(selectedPet.location.lat),
+              lng: parseFloat(selectedPet.location.lng),
+            }}
+          >
+            <div className="flex flex-col text-gray-700 items-center">
+              <h1 className="text-2xl font-semibold mb-2">
+                {selectedPet._petId.name}
+              </h1>
+
+              <p className="mb-1">
+                {selectedPet._petId.type} • {selectedPet._petId.breed}
+              </p>
+              <p>
+                A{" "}
+                <span className="font-semibold">
+                  {convertToKm(selectedPet.distance)}
+                </span>{" "}
+                kilómetros
+              </p>
+            </div>
+          </InfoWindow>
+        )}
       </GoogleMap>
     );
 };

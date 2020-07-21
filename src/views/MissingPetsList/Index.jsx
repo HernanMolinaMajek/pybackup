@@ -9,6 +9,7 @@ import nothingImg from "./nothing2.png";
 const Index = ({ userLocation, match }) => {
   const [missingPets, setMissingPets] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
     orderAndSetMisingPetList();
@@ -28,6 +29,34 @@ const Index = ({ userLocation, match }) => {
     } else return false;
   };
 
+  const onHandleChange = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+
+    switch (value) {
+      case "Todos": {
+        setFilteredList(missingPets);
+        break;
+      }
+      case "Perros": {
+        setFilteredList(filterPetByType(missingPets, "Perro"));
+        break;
+      }
+      case "Gatos": {
+        setFilteredList(filterPetByType(missingPets, "Gato"));
+        break;
+      }
+      case "Otros": {
+        setFilteredList(filterPetByType(missingPets, "Otro"));
+        break;
+      }
+    }
+  };
+
+  const filterPetByType = (array, type) => {
+    return array.filter((pet) => pet._petId.type === type);
+  };
+
   const orderAndSetMisingPetList = () => {
     getMissingPets().then((pets) => {
       let pe = pets.map((mp) => {
@@ -42,13 +71,13 @@ const Index = ({ userLocation, match }) => {
       let orderedList = pe.sort((a, b) => (a.distance > b.distance ? 1 : -1));
 
       setMissingPets(orderedList);
+      setFilteredList(orderedList);
     });
   };
 
   const getMissingPets = async () => {
     const response = await fetch("http://localhost:3030/api/lost");
     const data = await response.json();
-
     return data.Lost;
   };
 
@@ -106,7 +135,40 @@ const Index = ({ userLocation, match }) => {
 
       {Object.entries(userLocation).length !== 0 ? (
         missingPets.length > 0 ? (
-          missingPets.map((pet) => <PetCard key={pet._id} info={pet} />)
+          <div>
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+              htmlFor="type"
+            >
+              Filtrar por tipo
+            </label>
+            <div className="relative">
+              <select
+                onChange={onHandleChange}
+                noValidate
+                // style={inputStyle}
+                className="appearance-none border bg-white rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
+                name="type"
+              >
+                <option>Todos</option>
+                <option>Perros</option>
+                <option>Gatos</option>
+                <option>Otros</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg
+                  className="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
+            </div>
+            {filteredList.map((pet) => (
+              <PetCard key={pet._id} info={pet} />
+            ))}
+          </div>
         ) : (
           <div style={noPetImgStyle}>
             <h1 className="px-4 text-3xl lg:px-0 text-center font-medium text-gray-800 leading-none lg:text-left lg:text-6xl ">
@@ -128,7 +190,7 @@ const Index = ({ userLocation, match }) => {
         style={isClientMobile() ? modalSmStyle : modalStyle}
       >
         <div className="flex flex-col realtive w-full h-full ">
-          <Map user={userLocation} pets={missingPets} />
+          <Map user={userLocation} pets={filteredList} />
 
           <div className="bg-orange w-full h-20 z-40 absolute bottom-0">
             <div className="flex flex-row  p-5 items-center  font-medium">

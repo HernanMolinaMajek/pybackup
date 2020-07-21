@@ -102,7 +102,7 @@ const AdminPetCard = ({ info }) => {
                   {sex} de {age} {age === 1 ? "año" : "años"} de edad{" "}
                 </p>
               </div>
-              <p className="w-2/3 ml-3 mt-2 break-all text-gray-600 text-base leading-tight">
+              <p className="w-2/3 ml-3 mt-2 break-words text-gray-600 text-base leading-tight">
                 {description}
               </p>
             </div>

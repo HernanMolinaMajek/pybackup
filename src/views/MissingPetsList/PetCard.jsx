@@ -139,7 +139,7 @@ const PetCard = ({ info }) => {
                   </span>
                 </p>
               </div>
-              <p className="w-2/3 ml-3 mt-6 break-all text-base text-gray-600 leading-tight">
+              <p className="w-2/3 ml-3 mt-6 break-words text-base text-gray-600 leading-tight">
                 {description}
               </p>
             </div>
@@ -222,7 +222,7 @@ const PetCard = ({ info }) => {
                 Descripción
               </h1>
 
-              <p className="text-base text-gray-600 break-all leading-tight">
+              <p className="text-base text-gray-600 break-words leading-tight">
                 {description}
               </p>
             </div>
