@@ -38,10 +38,6 @@ const Index = ({ match, user }) => {
   useEffect(() => {
     if (isEditig) {
       getPet().then((pet) => {
-        // setForm((prevForm) => {
-        //   pet._ownerId = user._id;
-        //   return pet;
-        // });
         pet._ownerId = user._id;
         setForm(pet);
       });
@@ -50,18 +46,15 @@ const Index = ({ match, user }) => {
 
   const updatePet = async () => {
     try {
-      let resutl = await fetch(
-        `http://localhost:3030/api/pet/update/${form._id}`,
-        {
-          method: "put",
-          //mode: "no-cors",
-          headers: {
-            accept: "application/json",
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(form),
-        }
-      );
+      await fetch(`http://localhost:3030/api/pet/update/${form._id}`, {
+        method: "put",
+        //mode: "no-cors",
+        headers: {
+          accept: "application/json",
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
 
       setRedirect(true);
     } catch (error) {
@@ -71,7 +64,7 @@ const Index = ({ match, user }) => {
 
   const deletePet = async () => {
     try {
-      let resutl = await fetch(`http://localhost:3030/api/pet/${form._id}`, {
+      await fetch(`http://localhost:3030/api/pet/${form._id}`, {
         method: "delete",
         cors: "no-cors",
         headers: {
@@ -95,7 +88,7 @@ const Index = ({ match, user }) => {
     formData.append("img", imgState);
 
     try {
-      let resutl = await fetch("http://localhost:3030/api/pet", {
+      await fetch("http://localhost:3030/api/pet", {
         method: method,
         cors: "no-cors",
         headers: {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const Index = ({ logIn }) => {
   const [redirect, setRedirect] = useState(false);
@@ -180,7 +180,7 @@ const Index = ({ logIn }) => {
             <input
               noValidate
               onChange={onHandleChange}
-              // style={inputStyle}
+              placeholder="Ej: 543876107225"
               className="appearance-none border rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
               name="phone"
               type="number"
@@ -243,6 +243,13 @@ const Index = ({ logIn }) => {
           </button>
           {redirect && <Redirect to={"/"} />}
         </div>
+
+        <h1 className="text-gray-700 text-center mt-6">
+          ¿Tienes una cuenta?{" "}
+          <Link to="/login">
+            <span className="font-bold">Inicia sesión</span>
+          </Link>
+        </h1>
       </form>
     </div>
   );

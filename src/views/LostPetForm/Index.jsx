@@ -75,7 +75,7 @@ const Index = ({ match }) => {
     };
 
     try {
-      let result = await fetch("http://localhost:3030/api/lost", {
+      await fetch("http://localhost:3030/api/lost", {
         method: "POST",
         //mode: "no-cors",
         headers: {

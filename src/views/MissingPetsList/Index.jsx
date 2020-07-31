@@ -50,6 +50,8 @@ const Index = ({ userLocation, match }) => {
         setFilteredList(filterPetByType(missingPets, "Otro"));
         break;
       }
+      default:
+        break;
     }
   };
 
@@ -135,34 +137,35 @@ const Index = ({ userLocation, match }) => {
 
       {Object.entries(userLocation).length !== 0 ? (
         missingPets.length > 0 ? (
-          <div>
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
-              htmlFor="type"
-            >
-              Filtrar por tipo
-            </label>
-            <div className="relative">
-              <select
-                onChange={onHandleChange}
-                noValidate
-                // style={inputStyle}
-                className="appearance-none border bg-white rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
-                name="type"
+          <div className="">
+            <div className="flex flex-col lg:items-end">
+              {/* <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-medium mb-1 ml-3"
+                htmlFor="type"
               >
-                <option>Todos</option>
-                <option>Perros</option>
-                <option>Gatos</option>
-                <option>Otros</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
+                Filtrar por tipo
+              </label> */}
+              <div className="relative w-full lg:w-48">
+                <select
+                  onChange={onHandleChange}
+                  noValidate
+                  className="appearance-none border bg-white rounded-sm h-12 w-full py-2 px-3 text-gray-700 border-gray-400 leading-tight focus:outline-none"
+                  name="type"
                 >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
+                  <option>Todos</option>
+                  <option>Perros</option>
+                  <option>Gatos</option>
+                  <option>Otros</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
               </div>
             </div>
             {filteredList.map((pet) => (

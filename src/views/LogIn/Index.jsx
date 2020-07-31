@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const Index = ({ logIn }) => {
   const [redirect, setRedirect] = useState(false);
@@ -183,6 +183,13 @@ const Index = ({ logIn }) => {
           </button>
           {redirect && <Redirect to={"/"} />}
         </div>
+
+        <h1 className="text-gray-700 text-center mt-6">
+          ¿No tienes una cuenta?{" "}
+          <Link to="/register">
+            <span className="font-bold">Regístrate</span>
+          </Link>
+        </h1>
       </form>
     </div>
   );

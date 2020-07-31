@@ -11,7 +11,6 @@ import NewPetForm from "./views/NewPetForm/Index";
 import LostPetForm from "./views/LostPetForm/Index";
 import NotFound from "./components/NotFound";
 
-//import { AnimatedRoutes, RouteTransition } from "./animation/RouteTransition";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -28,8 +27,6 @@ const App = () => {
 
   const setUserLocationInMap = (position) => {
     setUserLocation(position);
-    //console.log("puse en el storage esto",userLocation)
-    //localStorage.setItem("lastUserLocation", JSON.stringify(userLocation));
   };
 
   const logOut = () => {
@@ -62,6 +59,7 @@ const App = () => {
         />
         <div className="lg:px-32">
           <Switch>
+            
             <Route exact path="/" component={Home} />
 
             <Route
@@ -76,7 +74,9 @@ const App = () => {
 
             <Route
               path="/petadmin"
-              render={(props) => <PetAdmin {...props} key={String(props)} user={user} />}
+              render={(props) => (
+                <PetAdmin {...props} key={String(props)} user={user} />
+              )}
             />
 
             <Route path="/lostPetForm/:id" component={LostPetForm} />
@@ -105,36 +105,6 @@ const App = () => {
 
             <Route component={NotFound} />
 
-            {/* <AnimatedRoutes exitBeforeEnter initial={false}>
-            <RouteTransition exact path="/">
-              <Home setUserLocationInMap={setUserLocationInMap} />
-            </RouteTransition>
-            <RouteTransition path="/login">
-              <LoginForm logIn={logIn} />
-            </RouteTransition>
-            <RouteTransition path="/register">
-              <Register logIn={logIn} />
-            </RouteTransition>
-            <RouteTransition path="/petadmin">
-              <PetAdmin user={user} />
-            </RouteTransition>
-            <RouteTransition path="/lostPetForm/:id">
-              <LostPetForm />
-            </RouteTransition>
-
-            <RouteTransition exact path="/newPetForm">
-              <NewPetForm user={user} />
-            </RouteTransition>
-
-            <RouteTransition path="/newPetForm/:id">
-              <NewPetForm user={user} />
-            </RouteTransition>
-            
-            <RouteTransition path="/missingPets">
-              <MissingPets userLocation={userLocation} />
-            </RouteTransition>  
-
-           </AnimatedRoutes> */}
           </Switch>
         </div>
       </Router>

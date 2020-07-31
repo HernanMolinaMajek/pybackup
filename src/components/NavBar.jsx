@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
+
 import Map from "./Map";
 import Modal from "react-modal";
 import logo from "./PerdidosYa_Logo_03.svg";
@@ -12,6 +13,7 @@ const NavBar = ({
   history,
 }) => {
   const [isMenuActive, setIsMenuActive] = useState(false);
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [position, setPosition] = useState({});
 
@@ -105,7 +107,9 @@ const NavBar = ({
         <div className=""></div>
       </div>
 
-      <div className={`${isMenuActive ? "" : "hidden"} lg:flex`}>
+      <div
+        className={`${isMenuActive ? "" : "hidden"} lg:flex`}
+      >
         <div className="text-md bg-yellow shadow text-link font-bold absolute items-center top-0 mt-20 py-2 pl-5 z-40 w-screen lg:relative lg:w-full lg:mt-0 lg:bg-transparent lg:shadow-none">
           {authenticated ? (
             <div className="flex flex-col lg:items-center lg:flex-row ">

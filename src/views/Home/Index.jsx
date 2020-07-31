@@ -1,5 +1,6 @@
 import React from "react";
 
+import Footer from "../../components/Footer"
 import fondo from "./fondo2.png";
 import newImg from "./new4.png";
 import lostImg from "./lost4.png";
@@ -15,7 +16,7 @@ const Index = () => {
 
   return (
     <div>
-      <div className="flex flex-col w-full mb-6">
+      <div className="flex flex-col w-full">
         <div style={fondoStyle} className="w-full h-screen">
           <div className="px-4 lg:px-0 font-medium">
             <h1 className="text-3xl text-center text-gray-800 leading-none lg:text-left lg:text-6xl lg:w-2/3">
@@ -44,13 +45,13 @@ const Index = () => {
               <img className="w-full h-full" src={newImg} alt="" />
               <p className="mt-2 p-3 text-center lg:text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
                 Añade a tus mejores amigos y manten a la comunidad informados
-                sobre el estado de ellos.
+                sobre el estado y paradero de ellos.
               </p>
             </div>
 
             <div className="flex flex-col bg-white shadow-lg rounded-xl w-70 mb-12 p-5 lg:mb-0">
               <h1 className="mt-4 text-center lg:text-center text-2xl font-bold text-gray-800 mb-10">
-                Declarar perdida
+                Declarar pérdida
               </h1>
               <img className="w-full h-full" src={lostImg} alt="" />
               <p className="mt-2 p-3 text-center lg:text-center text-base text-gray-700 leading-tight lg:text-lg lg:text-left">
@@ -72,6 +73,7 @@ const Index = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

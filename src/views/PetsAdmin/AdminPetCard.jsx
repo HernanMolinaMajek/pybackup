@@ -7,7 +7,7 @@ const AdminPetCard = ({ info }) => {
 
   const handlesubmit = async () => {
     try {
-      let result = await fetch(`http://localhost:3030/api/pet/${_id}`, {
+      await fetch(`http://localhost:3030/api/pet/${_id}`, {
         method: "PATCH",
         //mode: "no-cors",
         headers: {
@@ -46,7 +46,7 @@ const AdminPetCard = ({ info }) => {
                   </Link>
                 </div>
                 <div className="text-sm">
-                  <p>{type}</p>  
+                  <p>{type}</p>
                   <p>{breed}</p>
                   <p>{sex}</p>
                   <p>{age} años</p>
